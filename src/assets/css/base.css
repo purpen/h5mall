@@ -1,0 +1,476 @@
+/**
+ * Common Part --- Start
+ */
+
+/**
+ *font-size:62.5%;  10÷16=62.5%
+ * wap端已通过js适应IOS rem自适应 1rem = 100px
+ */
+html {
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 768px;
+  overflow-x: hidden;
+  margin: 0 auto;
+}
+
+#app {
+  min-height: 100vh;
+  margin: 0 auto;
+  font-size: 14px;
+  padding-bottom: 50px;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.min-height350 {
+  min-height: 350px;
+}
+
+.false {
+}
+
+.disableScroll {
+  overflow-y: hidden;
+}
+
+a {
+  color: rgba(112, 123, 135, .92);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #222;
+}
+
+a.is_active {
+  color: #222;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.fullscreen {
+  background: #fafafa;
+  min-height: calc(100vh - 50px);
+  margin-bottom: -50px;
+  padding-bottom: 50px;
+}
+
+button {
+  background: #BE8914;
+  border: none;
+  color: #fff;
+  vertical-align: top;
+}
+
+/*选择框默认样式*/
+select {
+  border: solid 1px #000;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;
+  padding-right: 14px;
+}
+
+input {
+  border: none;
+}
+
+textarea {
+  resize: none
+}
+
+.blank10 {
+  margin: 10px;
+}
+
+.blank20 {
+  margin: 20px;
+}
+
+.blank40 {
+  margin: 40px;
+}
+
+.blank60 {
+  margin: 60px;
+}
+
+.font-weight4 {
+  font-weight: 400;
+}
+
+.font-weight5 {
+  font-weight: 500;
+}
+
+.loading {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+/**
+ * 面包屑
+ */
+.bread {
+  margin: 0 0 10px 0;
+}
+
+/**
+ *  新添按钮颜色值
+ */
+button.is-custom.el-button.el-button--primary {
+  background-color: #FF5A5F;
+  border-color: transparent;
+  color: #fff;
+}
+
+button.is-custom.el-button--primary:hover {
+  background-color: #FF4500;
+  border-color: transparent;
+  color: #fff;
+}
+
+button.is-custom.el-button.el-button--default {
+  background-color: #fff;
+  border-color: #FF4500;
+  color: #FF4500;
+}
+
+button.is-custom.el-button.el-button--default:hover {
+  background-color: #fff;
+  border-color: #FF5A5F;
+  color: #FF5A5F;
+}
+
+button.is-custom:focus, .button.is-custom.is-focused {
+  border-color: transparent;
+  box-shadow: 0 0 0.5em rgba(0, 209, 178, 0.25);
+  color: #fff;
+}
+
+button.is-custom:active, .button.is-custom.is-active {
+  background-color: #FF4500;
+  border-color: transparent;
+  box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.2);
+  color: #fff;
+}
+
+button.is-custom.is-inverted {
+  background-color: #fff;
+  color: #FF5A5F;
+}
+
+button.el-button.is-custom.is-disabled {
+  background-color: #eef1f6;
+  color: #666;
+}
+
+button.is-custom.is-inverted:hover {
+  background-color: #fafafa;
+}
+
+button.is-custom.is-loading:after {
+  border-color: transparent transparent #fff #fff !important;
+}
+
+button.is-custom.is-outlined {
+  background-color: transparent;
+  border-color: #FF5A5F;
+  color: #FF5A5F;
+}
+
+button.is-custom.is-outlined:hover, .button.is-custom.is-outlined:focus {
+  background-color: #FF5A5F;
+  border-color: #FF5A5F;
+  color: #fff;
+}
+
+button.is-custom.is-outlined.is-loading:after {
+  border-color: transparent transparent #FF5A5F #FF5A5F !important;
+}
+
+.ivu-page-item-active {
+  background-color: #FF5A5F;
+}
+
+/**
+ * Common Part --- End
+ */
+
+.content {
+  padding: 20px;
+}
+
+.content .body {
+  clear: both;
+}
+
+.content .body p {
+  font-size: 0.35rem;
+  line-height: 1.8;
+}
+
+.content .body img {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 100%;
+  display: block;
+}
+
+.content .body h2 {
+  font-size: 0.45rem;
+}
+
+.content .body h3 {
+  font-size: 0.4rem;
+}
+
+.content .body strong {
+  font-weight: bold;
+}
+
+.content .body em {
+  font-style: italic;
+}
+
+/*login*/
+.username input, .password input {
+  -webkit-tap-highlight-color: transparent;
+  border: 1px solid #D2D2D2;
+  box-shadow: none;
+  height: 1.17rem;
+  text-indent: 1.2rem;
+  font-size: 17px;
+}
+
+.securityCode input {
+  height: 1.17rem;
+  font-size: 17px;
+  text-indent: 10px;
+  border: 1px solid #D2D2D2;
+}
+
+.loginbtn, .regbtn {
+  height: 1.17rem;
+  text-align: center;
+  font-size: 17px;
+}
+
+.getcode button {
+  display: block;
+  background: none;
+  padding: 0 15px;
+  /*width: 2.9rem;*/
+  width: 100%;
+  height: 1.17rem;
+  line-height: 1.17rem;
+  text-align: center;
+  font-size: 15px;
+  color: #BE8914;
+  border: 1px solid #BE8914;
+  border-radius: 4px;
+}
+
+.getcode button:active, .getcode button:hover {
+  color: #BE8914;
+  border: 1px solid #BE8914;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+/*输入框*/
+
+.address_new .ivu-input, .address_new .ivu-input:focus, .address_new .ivu-input:hover {
+  border: none;
+  text-align: right;
+  box-shadow: none;
+}
+
+.comAddress .ivu-input,
+.comAddress .ivu-input:focus, .comAddress .ivu-input:hover {
+  text-align: left;
+}
+
+.address_new .ivu-form-item-error-tip {
+  left: auto;
+  right: 0;
+}
+
+/*输入框end*/
+/*多选框*/
+.ivu-checkbox-inner {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+
+.ivu-checkbox-checked .ivu-checkbox-inner, .ivu-checkbox-indeterminate .ivu-checkbox-inner {
+  border-color: #BE8914;
+  background-color: #BE8914;
+}
+
+.ivu-checkbox-checked .ivu-checkbox-inner:after {
+  content: '';
+  display: table;
+  width: 6px;
+  height: 12px;
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  border: 1px solid #fff;
+  border-top: 0;
+  border-left: 0;
+  -ms-transform: rotate(45deg) scale(1);
+  transform: rotate(45deg) scale(1);
+  transition: all .2s ease-in-out;
+}
+
+.ivu-checkbox-indeterminate .ivu-checkbox-inner:after {
+  content: '';
+  width: 12px;
+  height: 1px;
+  -ms-transform: scale(1);
+  transform: scale(1);
+  position: absolute;
+  left: 3px;
+  top: 8px;
+  border: 1px solid #fff;
+}
+
+.goodslist .item .ivu-checkbox {
+  line-height: 100px;
+  padding-left: 15px;
+}
+
+/*多选框end*/
+/*单选框*/
+.ivu-radio-checked .ivu-radio-inner {
+  border-color: #BE8914;
+}
+
+.ivu-radio-inner:after {
+  background-color: #BE8914;
+}
+
+.pay-method .ivu-radio {
+  position: absolute;
+  right: 15px;
+}
+
+.addr-item .ivu-radio {
+  position: absolute;
+  top: 30px;
+  left: 9px;
+}
+
+.pay-method .ivu-radio-inner, .addr-item .ivu-radio-inner {
+  width: 20px;
+  height: 20px;
+}
+
+.pay-method .ivu-radio-checked .ivu-radio-inner, .addr-item .ivu-radio-checked .ivu-radio-inner {
+  background: #BE8914;
+}
+
+.pay-method .ivu-radio-inner:after, .addr-item .ivu-radio-inner:after {
+  width: 8px;
+  height: 13px;
+  border-radius: 2px;
+  border: 2px solid #ffffff;
+  border-left: none;
+  border-top: none;
+  transform: rotate(45deg);
+  left: 5px;
+  top: 2px;
+}
+
+/*单选框end*/
+/*开关*/
+.ivu-switch-checked {
+  border-color: #BE8914;
+  background-color: #BE8914;
+}
+
+/*开关end*/
+/*对话框*/
+.vertical-center-modal {
+  display: flex;
+  justify-content: center;
+}
+
+.vertical-center-m .ivu-modal {
+  top: 0;
+}
+
+.ivu-btn-primary {
+  background-color: #BE8914;
+  border-color: #BE8914;
+}
+
+/*全选按钮*/
+.checkAll span {
+  margin-right: 5px;
+}
+
+/* 自定义样式.mix- */
+.mix-login-box {
+  margin-top: 50px;
+}
+.mix-form-group {
+  margin: 1.5rem auto;
+}
+.mix-btn-fluid {
+  width: 100%;
+}
+
+
+/*对话框*/
+@media screen and (max-width: 767px) {
+  .container {
+    width: auto;
+    margin: 0 15px;
+  }
+
+  .ivu-form-item {
+    margin-bottom: 0;
+  }
+
+  .address_new .ivu-form-item {
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .getcode button {
+    padding: 0 6px;
+  }
+}
