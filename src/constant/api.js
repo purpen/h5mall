@@ -15,10 +15,11 @@ export default {
   products: '/products',  // GET 产品列表
   product_recommend_list: '/products/recommend_list', // GET 产品推荐列表
   product_detail: '/products/:rid', // GET 产品详情
+  product_skus: '/products/skus',  // GET 产品SKU
 
   // Cart
   cart: '/cart',  // GET 购物车列表
-  cart_addon: '/cart/addon',  // POST 添加产品至购物车
+  cart_addon: '/cart',  // POST 添加产品至购物车
   cart_remove: '/cart/remove',  // DELETE 移除产品
   cart_clear: '/cart/clear', // DELETE 清空购物车
   cart_item_count: '/cart/get_item_count',  // GET 购物车产品数

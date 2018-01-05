@@ -7,8 +7,8 @@ import store from './vuex/store';
 import * as types from './vuex/types';
 import router from './router';
 
-const app_key = 'IhPun2LmsXUDoW63AMtj';
-const app_secret = 'f9c2b9a3cf13bed9d55049b5726a609737ad519e';
+const app_key = 'fDzcyanIjw7AukFWUQs2';
+const app_secret = 'c9bbacc18c477ca0ca41012a6731db8418207299';
 
 // 生成随机字符串
 function random_string(len) {
@@ -55,7 +55,7 @@ function append_system_params() {
 // axios 配置
 const axiosWrap = axios.create({
   timeout: 5000,
-  baseURL: 'http://127.0.0.1:9000/api/v1.0/',
+  baseURL: 'http://127.0.0.1:5000/api/v1.0/',
   headers: {
     'Content-Type': 'application/json; charset=UTF-8',
     'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
@@ -63,7 +63,7 @@ const axiosWrap = axios.create({
   },
   // 负责 `params` 序列化的函数
   paramsSerializer: (params) => {
-    return Qs.stringify(params, { arrayFormat: 'brackets' });
+    return Qs.stringify(params, { arrayFormat: 'brackets' })
   }
 });
 
@@ -72,12 +72,20 @@ axiosWrap.interceptors.request.use(
   (config) => {
     // 添加验证签名
     config.params = {
-      ...append_system_params()
+      ...config.params, ...append_system_params()
     };
-    return config;
+    // 判断是否存在token，如果存在的话，则每个http header都加上token
+    if (store.state.token) {
+      // 添加axios头部Authorized
+      config.auth = {
+        username: store.state.token,
+        password: store.state.token
+      };
+    }
+    return config
   },
   (error) => {
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
 );
 
@@ -85,7 +93,7 @@ axiosWrap.interceptors.request.use(
 axiosWrap.interceptors.response.use(
   (response) => {
     console.log(response);
-    return response.data;
+    return response.data
   },
   (error) => {
     if (error.response) {

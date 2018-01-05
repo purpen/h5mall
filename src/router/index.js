@@ -48,7 +48,8 @@ const routes = [
     meta: {
       title: '购物车',
       show_header: false,
-      show_footer: false
+      show_footer: false,
+      required: true
     },
     component: Cart
   },

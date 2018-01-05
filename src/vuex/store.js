@@ -43,6 +43,7 @@ const mutations = {
   },
   [types.REVOKE_TOKEN] (state) {
     state.token = null;
+    console.log('Logout and remove token');
     localStorage.removeItem('token')
   },
   [types.SHOW_HEADER] (state, data) {

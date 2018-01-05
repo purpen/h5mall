@@ -82,6 +82,9 @@
               // 保存token
               this.$store.commit(types.SET_TOKEN, result.data.token);
 
+              // 清空Authorized设置
+              this.$axiosWrap.defaults.auth = {};
+
               this.$message.success('登录成功');
               this.$router.push('/')
             } else {

@@ -1,6 +1,10 @@
 <template>
     <div id="user">
-      User {{ id }}
+      User {{ user.username }}
+
+      <router-link :to="{ name:'logout' }">
+        Log Out
+      </router-link>
       <router-view></router-view>
     </div>
 </template>
@@ -12,15 +16,19 @@
       name: 'user',
       props: ['id'],
       data () {
-        return {}
+        return {
+          user: {}
+        }
       },
       mounted () {
         this.getProfile()
       },
       methods: {
         getProfile () {
-          this.$axiosWrap.get(api.user).then((response) => {
-            console.log(response)
+          this.$axiosWrap.get(api.user).then((result) => {
+            if (result.success) {
+              this.user = result.data
+            }
           }).catch((error) => {
             console.log(error)
           })
