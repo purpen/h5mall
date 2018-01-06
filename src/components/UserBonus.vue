@@ -1,12 +1,10 @@
 <template>
-    <div>
-      This is user posts!
-    </div>
+
 </template>
 
 <script>
   export default {
-    name: 'UserPosts'
+    name: 'UserBonus'
   }
 </script>
 

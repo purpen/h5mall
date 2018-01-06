@@ -1,12 +1,10 @@
 <template>
-    <div>
-      This is user posts!
-    </div>
+  <h1>This is find page</h1>
 </template>
 
 <script>
   export default {
-    name: 'UserPosts'
+    name: 'Find'
   }
 </script>
 

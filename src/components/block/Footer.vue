@@ -3,7 +3,7 @@
     <div class="mix-footer clearfix">
       <router-link :to="{ name: 'home' }" class="icon home">首页</router-link>
 
-      <router-link :to="{ name: '' }" class="icon list">分类</router-link>
+      <router-link :to="{ name: 'find' }" class="icon list">分类</router-link>
 
       <router-link :to="{ name: 'cart' }" class="icon cart">购物车</router-link>
 
@@ -34,10 +34,9 @@
     display: flex;
     bottom: 0;
     left: 0;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
     background: #fff;
   }
-
   .mix-footer .icon {
     flex: 1;
     display: block;

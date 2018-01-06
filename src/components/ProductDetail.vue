@@ -31,7 +31,7 @@
 
     <div class="mix-block mix-sku-group">
       <label class="title">已选</label>
-      <label class="summary">白色，2个</label>
+      <label class="summary">{{ choosed_sku }}</label>
 
       <span class="indicator pull-right">
         <i class="el-icon-more"></i>
@@ -76,8 +76,13 @@
         <i class="el-icon-service"></i>
         <span>客服</span>
       </a>
+      <router-link :to="{ 'name': 'cart' }" class="mix-badge flow-btn-cart">
+        <i class="el-icon-goods"></i>
+        <span>购物车</span>
+        <sup class="mix-badge__content is-fixed" v-if="cart_total_count">{{ cart_total_count }}</sup>
+      </router-link>
       <a class="cart" @click="show_sku_modal('cart')">加入购物车</a>
-      <a class="buy" @click="show_sku_modal('buy')">立即购买</a>
+      <a class="buy" @click="show_sku_modal('buy')">马上购买</a>
     </div>
 
     <div class="cover-bg" v-if="seen_servicer" @click="hide_service_dialog"></div>
@@ -162,6 +167,7 @@
 
 <script>
   import api from '@/constant/api'
+  import * as types from '@/vuex/types'
 
   export default {
     name: 'ProductDetail',
@@ -195,8 +201,25 @@
       }
     },
     computed: {
+      cart_total_count () {
+        return this.$store.state.cart.total_count
+      },
       is_login () {
         return this.$store.state.token !== null
+      },
+      choosed_sku () {
+        if (this.choosed) {
+          const sku_txt = [];
+          if (this.choosed.s_model) {
+            sku_txt.push(this.choosed.s_model)
+          }
+          if (this.choosed.s_color) {
+            sku_txt.push(this.choosed.s_color)
+          }
+
+          return sku_txt.join(' ') + ',' + this.quantity
+        }
+        return ''
       },
       has_mode () {
         return this.skus.modes.length !== 0
@@ -240,24 +263,34 @@
       get_all_addresses () {
 
       },
-      // 加入购物车
-      post_add_cart () {
-        this.$axiosWrap.post(api.cart_addon, {
-          rid: this.choosed.rid, quantity: this.quantity, option: ''
-        }).then((result) => {
-          if (result.success) {
-            // ...
-          }
-        }).catch((error) => {
-          this.$message.error(error.status.message)
-        })
-      },
       // 显示客服
       show_service_dialog () {
         this.seen_servicer = !this.seen_servicer
       },
       hide_service_dialog () {
         this.seen_servicer = false
+      },
+       // 加入购物车
+      handle_addto_cart () {
+        if (this.validate_choose_sku()) {
+          this.disabled = true;
+
+          this.$axiosWrap.post(api.cart_addon, {
+            rid: this.choosed.rid, quantity: this.quantity, option: ''
+          }).then((result) => {
+            if (result.success) {
+              this.disabled = false;
+
+              // 更新购物车数量
+              this.$store.commit(types.CART_UPDATE_COUNT, this.quantity);
+              // 隐藏弹出层
+              this.hide_sku_modal()
+            }
+          }).catch((error) => {
+            this.$message.error(error.status.message);
+            this.disabled = false;
+          })
+        }
       },
       // 改变购买数量
       handle_change (v) {
@@ -343,19 +376,13 @@
           this.cart_title = '加入购物车'
         } else if (ev === 'buy') {
           this.buy_way = 'buy';
-          this.buy_title = '直接购买'
+          this.buy_title = '马上购买'
         }
       },
       hide_sku_modal () {
         this.seen_sku_box = false
       },
-      handle_addto_cart () {
-        if (this.validate_choose_sku()) {
-          this.disabled = true;
-          this.cart_title = '正在添加购物车';
-          this.post_add_cart()
-        }
-      },
+
       handle_quick_buy () {
 
       },
@@ -444,11 +471,12 @@
   }
   .mix-block .title {
     color: #c4c4c4;
-    font-size: 15px;
+    font-size: 14px;
+    margin-right: 10px;
   }
   .mix-block .summary {
     color: #101010;
-    font-size: 15px;
+    font-size: 14px;
   }
   .mix-block .image {
     float: left;
@@ -463,6 +491,36 @@
   }
   .mix-block .indicator i {
     color: #c8c8c8;
+  }
+
+  .mix-badge {
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .mix-badge__content {
+    background-color: #f56c6c;
+    border-radius: 10px;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    height: 18px;
+    line-height: 18px;
+    padding: 0 6px;
+    text-align: center;
+    white-space: nowrap;
+    border: 1px solid #fff;
+  }
+  .mix-badge__content.is-fixed {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    transform: translateY(-50%) translateX(100%);
+  }
+
+  .flow-btn-cart .mix-badge__content.is-fixed {
+    top: 15px;
+    right: 30px;
   }
 
   .mix-product-brand .title {
@@ -532,7 +590,7 @@
   .mix-product-footer a {
     float: left;
     position: relative;
-    width: 20%;
+    width: 16%;
     height: 40px;
     font-size: 12px;
     display: flex;
@@ -542,16 +600,17 @@
   .mix-product-footer a i {
     margin-right: 10px;
   }
+
   .mix-product-footer a.buy {
     border-right: none;
-    width: 30%;
+    width: 26%;
     font-size: 14px;
     background: #BE8914;
     color: #fff
   }
   .mix-product-footer a.cart {
     border-right: none;
-    width: 30%;
+    width: 26%;
     font-size: 14px;
     background: #222;
     color: #fff
@@ -651,7 +710,6 @@
     cursor: not-allowed;
     background: #f1f1f1;
   }
-
   .mix-sku-box .sku-header {
     padding: 10px 0 40px 126px;
     position: relative;

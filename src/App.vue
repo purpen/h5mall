@@ -14,6 +14,7 @@
   import 'element-ui/lib/theme-chalk/index.css'
   import '@/assets/css/reset.css'
   import '@/assets/css/font-awesome.min.css'
+  import '@/assets/css/mix.css'
   import '@/assets/css/base.css'
 
   export default {
@@ -36,5 +37,6 @@
   max-width: 960px;
   margin: 0 auto;
   background: #fafafa;
+  position: relative;
 }
 </style>

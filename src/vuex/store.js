@@ -24,11 +24,19 @@ const state = {
   },
   title: 'D3IN',
   token: null,
+  // 购物车信息
+  cart: {
+    total_count: 0
+  },
   user: {}
 };
 
 
 const mutations = {
+  [types.CART_UPDATE_COUNT] (state, data) {
+    state.cart.total_count += data;
+    localStorage.setItem('cart_total_count', state.cart.total_count)
+  },
   [types.LOGIN] (state, data) {
     state.token = data;
     localStorage.token = data

@@ -1,20 +1,32 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Home from '@/components/Home';
-import Products from '@/components/Products';
-import ProductDetail from '@/components/ProductDetail';
-import Cart from '@/components/Cart';
-import Login from '@/components/auth/Login'
-import Register from '@/components/auth/Register';
-import Logout from '@/components/auth/Logout'
+import Vue from 'vue'
+import Router from 'vue-router'
+
+import Home from '@/components/Home'
+import Find from '@/components/Find'
+import Product from '@/components/Product'
+import ProductDetail from '@/components/ProductDetail'
+import Cart from '@/components/Cart'
+import Checkout from '@/components/Checkout'
+import Payment from '@/components/Payment'
 import User from '@/components/User'
 import UserProfile from '@/components/UserProfile'
+import UserOrders from '@/components/UserOrders'
+import UserAddress from '@/components/UserAddress'
 import UserPosts from '@/components/UserPosts'
+import UserWishlist from '@/components/UserWishlist'
+import UserBonus from '@/components/UserBonus'
+import Search from '@/components/Search'
+import Feedback from '@/components/Feedback'
+import Login from '@/components/auth/Login'
+import Register from '@/components/auth/Register'
+import Logout from '@/components/auth/Logout'
+import ForgotPasswd from '@/components/auth/ForgotPasswd'
 import Demo from '@/components/Demo'
 
-import store from '../vuex/store';
-import axiosWrap from '../http';
-import * as types from '../vuex/types';
+import store from '../vuex/store'
+import axiosWrap from '../http'
+import * as types from '../vuex/types'
+
 
 Vue.use(Router);
 
@@ -28,9 +40,17 @@ const routes = [
     }
   },
   {
+    path: '/find',
+    name: 'find',
+    component: Find,
+    meta: {
+      title: '分类'
+    }
+  },
+  {
     path: '/products',
     name: 'products',
-    component: Products
+    component: Product
   },
   {
     path: '/products/:rid',
@@ -45,13 +65,31 @@ const routes = [
   {
     path: '/cart',
     name: 'cart',
+    component: Cart,
     meta: {
       title: '购物车',
+      show_header: false
+    }
+  },
+  {
+    path: '/checkout',
+    name: 'checkout',
+    component: Checkout,
+    meta: {
+      title: '订单结算',
       show_header: false,
-      show_footer: false,
       required: true
-    },
-    component: Cart
+    }
+  },
+  {
+    path: '/payment',
+    name: 'payment',
+    component: Payment,
+    meta: {
+      title: '支付订单',
+      show_header: false,
+      required: true
+    }
   },
   {
     path: '/user',
@@ -59,7 +97,7 @@ const routes = [
     component: User,
     props: true,
     meta: {
-      title: '我',
+      title: '我的',
       show_header: false,
       required: true  // 添加该字段，表示进入这个路由是需要登录的
     },
@@ -68,6 +106,38 @@ const routes = [
         path: 'profile',
         component: UserProfile,
         meta: {
+          required: true
+        }
+      },
+      {
+        path: 'orders',
+        component: UserOrders,
+        meta: {
+          title: '我的订单',
+          required: true
+        }
+      },
+      {
+        path: 'address',
+        component: UserAddress,
+        meta: {
+          title: '我的地址',
+          required: true
+        }
+      },
+      {
+        path: 'wishlist',
+        component: UserWishlist,
+        meta: {
+          title: '我的心愿单',
+          required: true
+        }
+      },
+      {
+        path: 'bonus',
+        component: UserBonus,
+        meta: {
+          title: '我的红包',
           required: true
         }
       },
@@ -81,34 +151,54 @@ const routes = [
     ]
   },
   {
+    path: '/search',
+    name: 'search',
+    component: Search,
+    meta: {
+      title: '搜索',
+      show_footer: false
+    }
+  },
+  {
+    path: '/feedback',
+    name: 'feedback',
+    component: Feedback,
+    meta: {
+      title: '意见反馈',
+      show_header: false,
+      show_footer: false,
+      required: true
+    }
+  },
+  {
     path: '/login',
     name: 'login',
+    component: Login,
     meta: {
       title: '登录',
       show_header: false,
       show_footer: false
-    },
-    component: Login
+    }
   },
   {
     path: '/register',
     name: 'register',
+    component: Register,
     meta: {
       title: '注册',
       show_header: false,
       show_footer: false
-    },
-    component: Register
+    }
   },
   {
     path: '/forgot_passwd',
     name: 'forgot_passwd',
+    component: ForgotPasswd,
     meta: {
       title: '找回密码',
       show_header: false,
       show_footer: false
-    },
-    component: Demo
+    }
   },
   {
     path: '/logout',

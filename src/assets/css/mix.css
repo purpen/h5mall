@@ -1,0 +1,86 @@
+/* 表单 */
+.mix-input {
+  position: relative;
+  font-size: 14px;
+  display: inline-block;
+  width: 100%;
+}
+.mix-input__inner {
+  -webkit-appearance: none;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #dcdfe6;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 40px;
+  line-height: 1;
+  outline: none;
+  padding: 0 15px;
+  transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+  width: 100%;
+}
+.mix-input--mini {
+    font-size: 12px;
+}
+.mix-input--mini .mix-input__inner {
+    height: 28px;
+}
+.mix-input.is-disabled .mix-input__inner {
+  background-color: #f5f7fa;
+  border-color: #e4e7ed;
+  color: #c0c4cc;
+  cursor: not-allowed;
+}
+
+
+/* 按钮 */
+.mix-button {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  color: #606266;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  transition: .1s;
+  font-weight: 500;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  padding: 12px 20px;
+  font-size: 14px;
+}
+.mix-button--default {
+
+}
+.mix-button--primary {
+  color: #fff;
+  background-color: #409eff;
+  border-color: #409eff;
+}
+.mix-button--danger {
+  color: #fff;
+  background-color: #f56c6c;
+  border-color: #f56c6c;
+}
+.mix-button--info {
+
+}
+.mix-button--success {
+
+}
+.mix-button--warn {
+
+}
+.mix-button--checkout {
+  color: #fff;
+  background-color: #fc5449;
+  border-color: #fc5449;
+}
