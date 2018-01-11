@@ -1,167 +1,162 @@
 <template>
-  <div class="mix-product-page" ref="product-detail">
+  <div class="mx-container">
+    <div class="mx-container__body">
+      <div class="mx-product-page">
 
-    <router-link :to="{ name: 'cart' }" class="mix-btn-cart">
-      <i class="el-icon-goods"></i>
-    </router-link>
+        <router-link :to="{ name: 'cart' }" class="mx-button mx-button--round is-share">
+          <i class="fa fa-share-alt"></i>
+        </router-link>
 
-    <div class="mix-product-cover">
-      <img v-lazy="product.cover" class="image">
-    </div>
-
-    <div class="mix-product-header">
-      <h3 class="title">
-        {{ product.name }}
-      </h3>
-      <p class="price">
-        ￥ {{ product.sale_price }}
-      </p>
-    </div>
-
-    <div class="mix-block small mix-product-brand">
-      <router-link :to="{ name:'product', params: { rid: product.rid }}" class="media">
-        <img v-lazy="product.brand.logo" class="image">
-      </router-link>
-      <label class="title">{{ product.brand.name }}</label>
-
-      <span class="indicator pull-right">
-        <i class="el-icon-arrow-right"></i>
-      </span>
-    </div>
-
-    <div class="mix-block mix-sku-group">
-      <label class="title">已选</label>
-      <label class="summary">{{ choosed_sku }}</label>
-
-      <span class="indicator pull-right">
-        <i class="el-icon-more"></i>
-      </span>
-    </div>
-
-    <div class="mix-block mix-ship-address">
-      <label class="title">送至</label>
-      <label class="summary"></label>
-
-      <span class="indicator pull-right">
-        <i class="el-icon-more"></i>
-      </span>
-    </div>
-
-    <div class="mix-panel">
-      <label class="panel-title">
-        热门评价
-      </label>
-
-      <div class="panel-content">
-
-      </div>
-    </div>
-
-    <div class="mix-panel">
-      <label class="panel-title">
-        商品详情
-      </label>
-
-      <div class="panel-content">
-        {{ product.content }}
-      </div>
-    </div>
-
-    <div class="mix-product-footer">
-      <a class="collect">
-        <i class="el-icon-star-off"></i>
-        <span>收藏</span>
-      </a>
-      <a class="service" @click="show_service_dialog">
-        <i class="el-icon-service"></i>
-        <span>客服</span>
-      </a>
-      <router-link :to="{ 'name': 'cart' }" class="mix-badge flow-btn-cart">
-        <i class="el-icon-goods"></i>
-        <span>购物车</span>
-        <sup class="mix-badge__content is-fixed" v-if="cart_total_count">{{ cart_total_count }}</sup>
-      </router-link>
-      <a class="cart" @click="show_sku_modal('cart')">加入购物车</a>
-      <a class="buy" @click="show_sku_modal('buy')">马上购买</a>
-    </div>
-
-    <div class="cover-bg" v-if="seen_servicer" @click="hide_service_dialog"></div>
-    <div class="mix-service" v-if="seen_servicer">
-      <label class="close" @click="hide_service_dialog">x</label>
-      <i class="el-icon-service"></i>
-      <h2>客服电话</h2>
-      <a class="tel" href="tel:4008-798-751">4008-798-751</a>
-    </div>
-
-    <div class="cover-bg" v-if="seen_sku_box" @click="hide_sku_modal"></div>
-    <transition name="fade">
-      <div class="mix-sku-box clearfix" v-if="seen_sku_box">
-        <label class="close" @click="hide_sku_modal">x</label>
-
-        <div class="sku-header">
-          <img :src="choosed.cover" class="sku-image">
-          <p>{{ product.name }}</p>
-          <p class="price">￥<i>{{ choosed.sale_price }}</i></p>
-          <p class="stock">库存：{{ choosed.stock_count }}</p>
+        <div class="mx-product-cover">
+          <img v-lazy="product.cover" class="image">
         </div>
 
-        <div class="block" v-if="has_mode">
-          <label class="block-title">规格</label>
+        <div class="mx-product-header">
+          <h3 class="title">
+            {{ product.name }}
+          </h3>
+          <p class="price">
+            ￥ {{ product.sale_price }}
+          </p>
+        </div>
+      </div>
 
-          <div class="sku-group clearfix">
+      <div class="mx-block small mx-product-brand">
+        <router-link :to="{ name:'product', params: { rid: product.rid }}" class="media">
+          <img v-lazy="product.brand.logo" class="image">
+        </router-link>
+        <label class="title">{{ product.brand.name }}</label>
+
+        <span class="indicator pull-right">
+          <i class="fa fa-angle-right"></i>
+        </span>
+      </div>
+
+      <div class="mx-block mx-sku-group">
+        <label class="title">已选</label>
+        <label class="summary">{{ choosed_sku }}</label>
+
+        <span class="indicator pull-right">
+          <i class="fa fa-ellipsis-h"></i>
+        </span>
+      </div>
+
+      <div class="mx-panel m-t-10 hot-comments">
+        <div class="mx-panel__title no-border">
+          <label class="align-title">热门评价</label>
+        </div>
+        <div class="mx-panel__body">
+
+        </div>
+      </div>
+
+      <div class="mx-panel">
+        <div class="mx-panel__title no-border">
+          <label class="align-title">
+            图文详情
+          </label>
+        </div>
+        <div class="mx-panel__body">
+          {{ product.content }}
+        </div>
+      </div>
+
+      <div class="mx-product-footer">
+        <a class="collect">
+          <i class="fa fa-star-o"></i>
+          <span>收藏</span>
+        </a>
+        <a class="service" @click="show_service_dialog">
+          <i class="fa fa-headphones"></i>
+          <span>客服</span>
+        </a>
+        <router-link :to="{ 'name': 'cart' }" class="mx-badge flow-btn-cart">
+          <i class="fa fa-shopping-cart"></i>
+          <span>购物车</span>
+          <sup class="mx-badge__content is-fixed" v-if="cart_total_count">{{ cart_total_count }}</sup>
+        </router-link>
+        <a class="cart" @click="show_sku_modal('cart')">加入购物车</a>
+        <a class="buy" @click="show_sku_modal('buy')">马上购买</a>
+      </div>
+
+      <div class="cover-bg" v-if="seen_servicer" @click="hide_service_dialog"></div>
+      <div class="mx-service" v-if="seen_servicer">
+        <label class="close" @click="hide_service_dialog">x</label>
+        <i class="el-icon-service"></i>
+        <h2>客服电话</h2>
+        <a class="tel" href="tel:4008-798-751">4008-798-751</a>
+      </div>
+
+      <div class="cover-bg" v-if="seen_sku_box" @click="hide_sku_modal"></div>
+      <transition name="fade">
+        <div class="mx-sku-box clearfix" v-if="seen_sku_box">
+          <label class="close" @click="hide_sku_modal">x</label>
+
+          <div class="sku-header">
+            <img :src="choosed.cover" class="sku-image">
+            <p>{{ product.name }}</p>
+            <p class="price">￥<i>{{ choosed.sale_price }}</i></p>
+            <p class="stock">库存：{{ choosed.stock_count }}</p>
+          </div>
+
+          <div class="block" v-if="has_mode">
+            <label class="block-title">规格</label>
+
+            <div class="sku-group clearfix">
               <span v-for="(mode, index) in skus.modes"
                     :class=" is_active_mode(index) ? 'active option': 'option' "
                     :disabled="!mode.valid"
                     @click="handle_choose_mode(index, mode.valid)">
                 {{ mode.name }}
               </span>
+            </div>
           </div>
-        </div>
 
-        <div class="block" v-if="has_color">
-          <label class="block-title">颜色</label>
+          <div class="block" v-if="has_color">
+            <label class="block-title">颜色</label>
 
-          <div class="sku-group clearfix">
+            <div class="sku-group clearfix">
               <span v-for="(color, index) in skus.colors"
                     :class=" is_active_color(index) ? 'active option': 'option' "
                     :disabled="!color.valid"
                     @click="handle_choose_color(index, color.valid)">
                 {{ color.name }}
               </span>
+            </div>
+
           </div>
 
-        </div>
+          <div class="block mx-quantity">
+            <label class="block-title">数量</label>
 
-        <div class="block mix-quantity">
-          <label class="block-title">数量</label>
-
-          <el-input-number v-model="quantity" class="pull-right" size="mini" @change="handle_change" :min="1" :max="choosed.stock_count"></el-input-number>
-        </div>
-
-        <div class="sku-footer">
-          <div class="btn-group" v-if="buy_way">
-            <button class="confirm" @click="handle_addto_cart" :disabled="disabled" v-if="buy_way === 'cart'">
-              {{ cart_title }}
-            </button>
-            <button :to="1" class="confirm" @click="handle_quick_buy" :disabled="disabled" v-if="buy_way === 'buy'">
-              {{ buy_title }}
-            </button>
+            <el-input-number v-model="quantity" class="pull-right" size="mini" @change="handle_change" :min="1" :max="choosed.stock_count"></el-input-number>
           </div>
 
-          <div class="chooseSubmit" v-if="!buy_way">
-            <button class="confirm" @click="handle_confirm_cart" >
-              添加购物车
-            </button>
-            <button :to="1" class="confirm" @click="confirm_buy" >
-              立即购买
-            </button>
+          <div class="sku-footer">
+            <div class="btn-group" v-if="buy_way">
+              <button class="confirm" @click="handle_addto_cart" :disabled="disabled" v-if="buy_way === 'cart'">
+                {{ cart_title }}
+              </button>
+              <button :to="1" class="confirm" @click="handle_quick_buy" :disabled="disabled" v-if="buy_way === 'buy'">
+                {{ buy_title }}
+              </button>
+            </div>
+
+            <div class="chooseSubmit" v-if="!buy_way">
+              <button class="confirm" @click="handle_confirm_cart" >
+                添加购物车
+              </button>
+              <button :to="1" class="confirm" @click="confirm_buy" >
+                立即购买
+              </button>
+            </div>
           </div>
+
+
         </div>
+      </transition>
 
-
-      </div>
-    </transition>
-
+    </div>
   </div>
 </template>
 
@@ -241,7 +236,7 @@
             this.product = result.data
           }
         }).catch((error) => {
-          this.$message.error(error.status.message)
+          this.$message.error(error.message)
         })
       },
       get_skus () {
@@ -252,7 +247,7 @@
             this.initial_show_sku()
           }
         }).catch((error) => {
-          this.$message.error(error.status.message)
+          this.$message.error(error.message)
         })
       },
       // 获取默认地址
@@ -282,12 +277,12 @@
               this.disabled = false;
 
               // 更新购物车数量
-              this.$store.commit(types.CART_UPDATE_COUNT, this.quantity);
+              this.$store.commit(types.INC_CART_COUNT, this.quantity);
               // 隐藏弹出层
               this.hide_sku_modal()
             }
           }).catch((error) => {
-            this.$message.error(error.status.message);
+            this.$message.error(error.message);
             this.disabled = false;
           })
         }
@@ -459,127 +454,48 @@
 </script>
 
 <style scoped>
-  .mix-product-page {
+  .mx-product-page {
     position: relative;
+    background: #ffffff;
   }
-
-  .mix-block {
-    background: #fff;
-    border-top: 1px solid #E6E6E6;
-    border-bottom: 1px solid #E6E6E6;
-    padding: 12px 15px;
-  }
-  .mix-block .title {
-    color: #c4c4c4;
-    font-size: 14px;
-    margin-right: 10px;
-  }
-  .mix-block .summary {
-    color: #101010;
-    font-size: 14px;
-  }
-  .mix-block .image {
-    float: left;
-    width: 100px;
-    height: 100px;
-    border-radius: 200px;
-  }
-  .mix-block.small .image {
-    width: 50px;
-    height: 50px;
-    border-radius: 100px;
-  }
-  .mix-block .indicator i {
-    color: #c8c8c8;
-  }
-
-  .mix-badge {
-    position: relative;
-    vertical-align: middle;
-    display: inline-block;
-  }
-  .mix-badge__content {
-    background-color: #f56c6c;
-    border-radius: 10px;
-    color: #fff;
-    display: inline-block;
-    font-size: 12px;
-    height: 18px;
-    line-height: 18px;
-    padding: 0 6px;
-    text-align: center;
-    white-space: nowrap;
-    border: 1px solid #fff;
-  }
-  .mix-badge__content.is-fixed {
+  .mx-button--round.is-share {
+    border: none;
     position: absolute;
-    top: 0;
-    right: 10px;
-    transform: translateY(-50%) translateX(100%);
+    right: 16px;
+    top: 16px;
+    z-index: 8;
   }
-
-  .flow-btn-cart .mix-badge__content.is-fixed {
-    top: 15px;
-    right: 30px;
+  .mx-product-page .mx-product-cover {
+    text-align: center;
   }
-
-  .mix-product-brand .title {
-    line-height: 50px;
-    margin-left: 10px;
+  .mx-product-page .mx-product-cover img {
+    max-width: 100%;
+    max-height: 480px;
   }
-  .mix-product-brand .indicator {
-    line-height: 50px;
-  }
-
-  .mix-product-header {
+  .mx-product-header {
     padding: 0 15px 10px;
     background: #fff;
     border-bottom: 1px solid #E6E6E6;
   }
-  .mix-product-header .title {
+  .mx-product-header .title {
     font-size: 16px;
     line-height: 16px;
     margin: 10px auto;
   }
-  .mix-product-header .price {
+  .mx-product-header .price {
     font-size: 15px;
     color: #BE8914;
   }
 
-  .mix-panel {
-    /*height: 1000vh;*/
-    margin: 10px auto;
+  .mx-product-brand .title {
+    line-height: 50px;
+    margin-left: 10px;
   }
-  .mix-panel .panel-title {
-    font-size: 15px;
-    letter-spacing: 2px;
-    text-align: center;
-    line-height: 46px;
-    height: 50px;
-    color: #999;
-    position: relative;
-    display: block;
-  }
-  .mix-panel .panel-title:before {
-    content: "";
-    position: absolute;
-    left: 15px;
-    top: 22.5px;
-    width: 34%;
-    height: 1px;
-    background: #9994;
-  }
-  .mix-panel .panel-title:after {
-    content: "";
-    position: absolute;
-    right: 15px;
-    top: 22.5px;
-    width: 34%;
-    height: 1px;
-    background: #9994;
+  .mx-product-brand .indicator {
+    line-height: 50px;
   }
 
-  .mix-product-footer {
+  .mx-product-footer {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -587,7 +503,7 @@
     width: 100%;
     z-index: 2;
   }
-  .mix-product-footer a {
+  .mx-product-footer a {
     float: left;
     position: relative;
     width: 16%;
@@ -597,18 +513,18 @@
     justify-content: center;
     align-items: center;
   }
-  .mix-product-footer a i {
+  .mx-product-footer a i {
     margin-right: 10px;
   }
 
-  .mix-product-footer a.buy {
+  .mx-product-footer a.buy {
     border-right: none;
     width: 26%;
     font-size: 14px;
     background: #BE8914;
     color: #fff
   }
-  .mix-product-footer a.cart {
+  .mx-product-footer a.cart {
     border-right: none;
     width: 26%;
     font-size: 14px;
@@ -627,7 +543,7 @@
     background: #00000080;
   }
 
-  .mix-service {
+  .mx-service {
     width: 252px;
     height: 222px;
     background: #ffffff;
@@ -645,7 +561,7 @@
     font-size: 17px;
     border-radius: 6px;
   }
-  .mix-service .close {
+  .mx-service .close {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -657,16 +573,16 @@
     line-height: 20px;
     text-align: center;
   }
-  .mix-service h2 {
+  .mx-service h2 {
     font-weight: 600;
     color: #222;
     margin: 18px 0 12px;
   }
-  .mix-service .tel {
+  .mx-service .tel {
     color: #BE8914;
   }
 
-  .mix-sku-box {
+  .mx-sku-box {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -676,17 +592,17 @@
     padding-bottom: 50px;
     background: #fff;
   }
-  .mix-sku-box .block {
+  .mx-sku-box .block {
     margin: 20px 15px;
     font-size: 14px;
   }
-  .mix-sku-box .block.mix-quantity .block-title {
+  .mx-sku-box .block.mx-quantity .block-title {
     line-height: 30px;
   }
-  .mix-sku-box .block .sku-group {
+  .mx-sku-box .block .sku-group {
     margin-top: 10px;
   }
-  .mix-sku-box .block .option {
+  .mx-sku-box .block .option {
     background: #FAFAFA;
     border: 1px solid #E6E6E6;
     border-radius: 2px;
@@ -697,20 +613,20 @@
     margin-bottom: 10px;
     display: inline-block;
   }
-  .mix-sku-box .block .option.active{
+  .mx-sku-box .block .option.active{
     color: #BE8914;
     border-color: #BE8914;
   }
-  .mix-sku-box .block .option:last-child {
+  .mx-sku-box .block .option:last-child {
     margin-right: 0;
   }
-  .mix-sku-box .block .option[disabled] {
+  .mx-sku-box .block .option[disabled] {
     color: gray;
     border-color: #f1f1f1;
     cursor: not-allowed;
     background: #f1f1f1;
   }
-  .mix-sku-box .sku-header {
+  .mx-sku-box .sku-header {
     padding: 10px 0 40px 126px;
     position: relative;
     border-bottom: 1px solid #0000001a;
@@ -741,7 +657,7 @@
     background-color: #fff;
   }
 
-  .mix-sku-box .close {
+  .mx-sku-box .close {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -755,7 +671,7 @@
     line-height: 25px;
     text-align: center;
   }
-  .mix-sku-box .sku-footer {
+  .mx-sku-box .sku-footer {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -763,7 +679,7 @@
     font-size: 14px;
     z-index: 9;
   }
-  .mix-sku-box .sku-footer .btn-group .confirm {
+  .mx-sku-box .sku-footer .btn-group .confirm {
     background: #BE8914;
     color: #fff;
     width: 100%;
@@ -790,20 +706,17 @@
     border: 1px solid #BE8914;
   }
 
-  .mix-btn-cart {
+  .mx-btn-cart {
     position: absolute;
     right: 20px;
     top: 20px;
     z-index: 99;
     font-size: 15px;
   }
-  .mix-product-page .mix-product-cover img {
-    width: 100%;
-  }
-  .mix-product-header,
-  .mix-sku-group,
-  .mix-ship-address,
-  .mix-product-brand
+  .mx-product-header,
+  .mx-sku-group,
+  .mx-ship-address,
+  .mx-product-brand
   {
     margin-top: 10px;
   }

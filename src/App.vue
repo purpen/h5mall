@@ -3,6 +3,8 @@
     <Header></Header>
     <router-view></router-view>
     <Footer></Footer>
+    <!-- set progressbar -->
+    <vue-progress-bar></vue-progress-bar>
   </div>
 </template>
 
@@ -22,6 +24,28 @@
     data() {
       return {}
     },
+    mounted () {
+      //  [App.vue specific] When App.vue is finish loading finish the progress bar
+      this.$Progress.finish()
+    },
+    created () {
+      //  [App.vue specific] When App.vue is first loaded start the progress bar
+      this.$Progress.start();
+
+      //  hook the progress bar to start before we move router-view
+      this.$router.beforeEach((to, from, next) => {
+        this.$Progress.start();
+        // continue to next page
+        next()
+      });
+
+      // hook the progress bar to finish after we've finished moving router-view
+      this.$router.afterEach((to, from) => {
+        console.log('From: ' + from);
+        // finish the progress bar
+        this.$Progress.finish()
+      })
+    },
     components: {
       Header,
       Footer
@@ -30,13 +54,5 @@
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  max-width: 960px;
-  margin: 0 auto;
-  background: #fafafa;
-  position: relative;
-}
+
 </style>

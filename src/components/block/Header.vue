@@ -1,24 +1,11 @@
 <template>
-  <div v-if="show_header">
-    <header class="mix-header">
-      <el-row type="flex" class="row-bg">
-        <el-col :span="3">{{ title }}</el-col>
-        <el-col :span="18">
-          <el-input
-            size="mini"
-            :placeholder="hot_search_words"
-            prefix-icon="el-icon-search"
-            v-model="query">
-          </el-input>
-        </el-col>
-        <el-col :span="3">
-          <div class="mix-news">
-            <i class="el-icon-news"></i>
-          </div>
-        </el-col>
-      </el-row>
-    </header>
-  </div>
+  <header class="mx-header" v-if="show_header">
+    <div class="left-side"></div>
+    <div class="site-name">
+      {{ title }}
+    </div>
+    <div class="right-side"></div>
+  </header>
 </template>
 
 <script>
@@ -35,19 +22,22 @@
           return this.$store.state.layout_config.show_header
         },
         title () {
-          return this.$router.history.current.meta.title
+          if (this.$router.history.current.meta.title) {
+            return this.$router.history.current.meta.title
+          }
+          return this.$store.state.title
         }
       }
     }
 </script>
 
 <style scoped>
-  .mix-header {
-    height: auto;
-    padding: 10px 15px;
-    line-height: 32px;
+  .mx-header {
+    height: 40px;
+    line-height: 40px;
+    background: #efeef4;
   }
-  .mix-header .mix-news {
+  .mx-header .site-name {
     text-align: center;
     font-size: 14px;
   }

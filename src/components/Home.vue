@@ -1,28 +1,61 @@
 <template>
-  <div class="mix-home-main">
-    <div class="mix-banner">
-
+  <div class="mx-container">
+    <div class="mx-banner">
+      <swiper :options="swiper_option">
+        <swiper-slide
+          v-for="slide in swiper_slides"
+          :key="slide.rid">
+           <img v-lazy="slide.image" :alt="slide.title" class="image" >
+        </swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
+      </swiper>
     </div>
 
-    <div class="mix-newest-products">
-      <h4 class="block-title">最新产品</h4>
+    <div class="mx-container__body">
 
-      <el-row :gutter="15" v-if="newest_products.length" class="mix-products">
-        <el-col :span="12" v-for="(product, index) in newest_products" :key="product.rid">
-          <el-card :body-style="{ padding: '0px' }" class="card">
-            <router-link :to="{ name:'product', params: { rid: product.rid }}">
-              <img v-lazy="product.cover" class="image">
-            </router-link>
-            <div style="padding: 14px;">
-              <span>{{ product.name }}</span>
-              <div class="bottom clearfix">
-                <span class="price">{{ product.sale_price }}</span>
-                <el-button type="text" class="button">购买</el-button>
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
+      <div class="mx-panel">
+        <div class="mx-panel__title no-border">
+          <label>新品上架</label>
+          <router-link :to="{ 'name': 'orders' }" class="pull-right">
+            查看全部
+          </router-link>
+        </div>
+        <div class="mx-panel__body">
+          <div class="mx-products--latest">
+            <mx-product
+              v-for="(product, index) in newest_products"
+              :product="product"
+              :key="product.rid"
+            >
+            </mx-product>
+          </div>
+        </div>
+      </div>
+
+      <div class="mx-panel">
+        <div class="mx-panel__title no-border">
+          <label>热门品牌</label>
+          <router-link :to="{ 'name': 'orders' }" class="pull-right">
+            查看全部
+          </router-link>
+        </div>
+        <div class="mx-panel__body">
+
+        </div>
+      </div>
+
+      <div class="mx-panel">
+        <div class="mx-panel__title no-border">
+          <label>热门分类</label>
+          <router-link :to="{ 'name': 'orders' }" class="pull-right">
+            查看全部
+          </router-link>
+        </div>
+        <div class="mx-panel__body">
+
+        </div>
+      </div>
+
 
     </div>
   </div>
@@ -30,11 +63,21 @@
 
 <script>
   import api from '@/constant/api'
+  import MxProduct from '@/components/block/MxProduct'
+
+  import 'swiper/dist/css/swiper.css'
 
   export default {
     name: 'Home',
     data() {
       return {
+        swiper_option: {
+          pagination: {
+            el: '.swiper-pagination',
+            dynamicBullets: true
+          }
+        },
+        swiper_slides: [],
         newest_products: [],
         pagination: {
           page: 1,
@@ -43,7 +86,16 @@
       }
     },
     computed: {
-
+      is_login () {
+        return this.$store.state.token
+      },
+      title () {
+        return this.$router.history.current.meta.title
+      }
+    },
+    created () {
+      this.get_slides()
+      this.get_products()
     },
     methods: {
       get_products () {
@@ -57,54 +109,42 @@
             this.$message.error(result.status.message)
           }
         }).catch((error) => {
-          this.$message.error(error.status.message)
+          this.$message.error(error.message)
+        })
+      },
+      get_slides () {
+        const vm = this;
+        this.$axiosWrap.get(api.slide_list, {
+          params: {
+            page: 1,
+            per_page: 5,
+            spot: 'Ad40563872'
+          }
+        }).then((result) => {
+          if (result.success) {
+            vm.swiper_slides = result.data.slides;
+          } else {
+            vm.$message.error(result.status.message)
+          }
+        }).catch((error) => {
+          vm.$message.error(error.message)
         })
       }
     },
-    created () {
-      this.get_products()
-    },
-    mounted () {
-
+    components: {
+      MxProduct
     }
   }
 </script>
 
 <style scoped>
-  .mix-banner {
-    min-height: 240px;
+  .mx-banner {
+    height: 390px;
     background: #fafafa;
   }
-  .mix-newest-products {
-    padding: 15px;
-  }
-  .mix-newest-products .block-title {
-    font-weight: 500;
-  }
-  .mix-products {
-    margin-top: 15px;
-  }
-  .mix-products .card {
-    margin-bottom: 15px;
-  }
-  .mix-products .image {
+  .mx-banner .swiper-slide .image {
     width: 100%;
-    height: 150px;
-    display: block;
-    overflow: hidden;
-  }
-  .mix-products .price {
-    font-size: 13px;
-    color: #f60;
-  }
-  .mix-products .bottom {
-    margin-top: 13px;
-    line-height: 12px;
-  }
-
-  .mix-products .button {
-    padding: 0;
-    float: right;
+    max-height: 390px;
   }
 
 </style>
