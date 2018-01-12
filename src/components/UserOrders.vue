@@ -1,32 +1,37 @@
 <template>
-  <div class="mx-container">
+  <div class="fx-container">
 
-    <div class="mx-container__menu">
-      <ul class="list">
-        <li class="item">待付款</li>
-        <li class="item">待发货</li>
-        <li class="item active">待收货</li>
-        <li class="item">售后订单</li>
-      </ul>
+    <div class="fx-container__menu">
+      <fx-list :tabs="tabs" v-on:click="hook_change_tab"></fx-list>
     </div>
 
-    <div class="mx-container__body is-orders">
+    <div class="fx-container__body is-orders">
+      <fx-order-list :orders="orders"></fx-order-list>
 
-      <div class="mx-orders__list">
-        订单列表....
+      <div class="fx-empty-tips">
+        没有更多
       </div>
-
     </div>
+
   </div>
 </template>
 
 <script>
   import api from '@/constant/api'
+  import FxList from '@/components/fx/FxList'
+  import FxOrderList from '@/components/fx/FxOrderList'
 
   export default {
     name: 'UserOrders',
     data () {
       return {
+        tabs: [
+          { name: '全部', status: 0 },
+          { name: '待付款', status: 1 },
+          { name: '待发货', status: 10 },
+          { name: '待收货', status: 20 }
+        ],
+        active_tab: 0,
         orders: [],
         status: 0
       }
@@ -43,25 +48,37 @@
       // 获取订单列表
       get_orders () {
         const vm = this;
-        this.$axiosWrap.get(api.orders).then((result) => {
+        this.$axiosWrap.get(api.orders, {
+          params: { status: vm.status }
+        }).then((result) => {
           if (result.success) {
             this.orders = result.data.orders
           }
         }).catch((error) => {
           vm.$message.error(error.message)
         })
+      },
+      hook_change_tab (index) {
+        let counter = 0;
+        for (const tab of this.tabs) {
+          if (counter === index) {
+            this.status = tab.status
+          }
+          counter += 1
+        }
+        this.get_orders()
       }
-
+    },
+    components: {
+      FxList,
+      FxOrderList
     }
   }
 </script>
 
 <style scoped>
-  .mx-container__body.is-orders {
+  .fx-container__body.is-orders {
     flex-direction: column;
-  }
-  .mx-orders__list {
-    padding: 20px;
   }
 
 </style>

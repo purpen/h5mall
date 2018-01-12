@@ -37,7 +37,8 @@ const routes = [
     name: 'home',
     component: Home,
     meta: {
-      title: '精选'
+      title: '精选',
+      show_header: false
     }
   },
   {
@@ -45,6 +46,7 @@ const routes = [
     name: 'find',
     component: Find,
     meta: {
+      show_header: false,
       title: '分类'
     }
   },
@@ -69,8 +71,7 @@ const routes = [
     name: 'cart',
     component: Cart,
     meta: {
-      title: '购物车',
-      show_header: false
+      title: '购物车'
     }
   },
   {
@@ -106,7 +107,10 @@ const routes = [
       {
         path: '',
         name: 'user',
-        component: UserCenter
+        component: UserCenter,
+        meta: {
+          show_header: false
+        }
       },
       {
         path: 'profile',

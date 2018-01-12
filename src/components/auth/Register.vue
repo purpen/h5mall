@@ -1,5 +1,5 @@
 <template>
-  <div class="mix-register-box">
+  <div class="fx-register-box">
     <Logo></Logo>
     <el-form ref="form" :model="form" :rules="rules">
       <el-form-item prop="account" class="mix-form-group">

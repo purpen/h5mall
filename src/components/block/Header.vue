@@ -1,5 +1,5 @@
 <template>
-  <header class="mx-header" v-if="show_header">
+  <header class="fx--header" v-if="show_header">
     <div class="left-side"></div>
     <div class="site-name">
       {{ title }}
@@ -32,12 +32,12 @@
 </script>
 
 <style scoped>
-  .mx-header {
+  .fx-header {
     height: 40px;
     line-height: 40px;
-    background: #efeef4;
+    border-bottom: 1px solid #ededed;
   }
-  .mx-header .site-name {
+  .fx-header .site-name {
     text-align: center;
     font-size: 14px;
   }

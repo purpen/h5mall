@@ -1,11 +1,11 @@
 <template>
-  <div class="mx-container">
-    <div class="mx-container__body">
-      <div class="mx-panel">
-        <div class="mx-panel__body">
+  <div class="fx-container">
+    <div class="fx-container__body">
+      <div class="fx-panel">
+        <div class="fx-panel__body">
 
-          <div class="mx-address" v-if="selected_address">
-            <div class="mx-address__item">
+          <div class="fx-address" v-if="selected_address">
+            <div class="fx-address__item">
               <div class="content">
                 <span class="icon pull-left">
                   <i class="fa fa-map-marker"></i>
@@ -28,7 +28,7 @@
             </div>
           </div>
 
-          <div class="mx-address--empty" @click="hook_choose_address" v-else>
+          <div class="fx-address--empty" @click="hook_choose_address" v-else>
             <div class="empty-block">
               <i class="fa fa-map-marker"></i> 添加收货地址
             </div>
@@ -40,9 +40,9 @@
         </div>
       </div>
 
-      <div class="mx-panel">
-        <div class="mx-panel__body is-column">
-          <div class="mx-block mx-block--pay">
+      <div class="fx-panel">
+        <div class="fx-panel__body is-column">
+          <div class="fx-block mx-block--pay">
             <span class="icon">
               <i class="fa fa-wechat"></i>
             </span>
@@ -54,7 +54,7 @@
             </span>
           </div>
 
-          <div class="mx-block mx-block--pay">
+          <div class="fx-block mx-block--pay">
             <span class="icon">
               <i class="fa fa-paypal"></i>
             </span>
@@ -68,35 +68,35 @@
         </div>
       </div>
 
-      <div class="mx-panel">
-        <div class="mx-panel__title">
+      <div class="fx-panel">
+        <div class="fx-panel__title">
           <label>商品详情</label>
         </div>
-        <div class="mx-panel__body is-column">
+        <div class="fx-panel__body is-column">
 
-          <div class="mx-sku" v-for="sku in checkout_skus_data" :key="sku.rid">
-            <div class="mx-sku__image">
+          <div class="fx-sku" v-for="sku in checkout_skus_data" :key="sku.rid">
+            <div class="fx-sku__image">
               <img v-lazy="sku.cover" :alt="sku.product_name" >
             </div>
-            <div class="mx-sku__content">
+            <div class="fx-sku__content">
               <h4 class="title">{{ sku.product_name }}</h4>
               <p class="mode">{{ sku.s_model }} {{ sku.s_color }}</p>
               <p class="text-price">
                 <span class="currency">￥</span> {{ sku.sale_price }}
               </p>
             </div>
-            <div class="mx-sku__quantity">
+            <div class="fx-sku__quantity">
               <label>x {{ v_sku_quantity(sku.rid) }}</label>
             </div>
           </div>
 
-          <div class="mx-block m-t-15">
+          <div class="fx-block m-t-15">
             <label class="title">
               买家留言
             </label>
             <div class="summary">
-              <div class="mx-input">
-                <input class="mx-input__inner" v-model="remark" >
+              <div class="fx-input">
+                <input class="fx-input__inner" v-model="remark" >
               </div>
             </div>
           </div>
@@ -104,9 +104,9 @@
         </div>
       </div>
 
-      <div class="mx-panel">
-        <div class="mx-panel__body is-column">
-          <div class="mx-block mx-block--pay">
+      <div class="fx-panel">
+        <div class="fx-panel__body is-column">
+          <div class="fx-block mx-block--pay">
             <label class="title">
               优惠码
             </label>
@@ -115,7 +115,7 @@
             </span>
           </div>
 
-          <div class="mx-block mx-block--pay">
+          <div class="fx-block mx-block--pay">
             <label class="title">
               配送方式
             </label>
@@ -124,7 +124,7 @@
             </span>
           </div>
 
-          <div class="mx-block mx-block--pay">
+          <div class="fx-block mx-block--pay">
             <label class="title">
               送货时间
             </label>
@@ -133,7 +133,7 @@
             </span>
           </div>
 
-          <div class="mx-block mx-block--pay">
+          <div class="fx-block mx-block--pay">
             <label class="title">
               发票类型
             </label>
@@ -145,15 +145,15 @@
         </div>
       </div>
 
-      <div class="mx-panel">
-        <div class="mx-panel__title no-border">
+      <div class="fx-panel">
+        <div class="fx-panel__title no-border">
           <label>商品总价</label>
           <span class="text-price pull-right">
             ￥ {{ total_amount }}
           </span>
         </div>
-        <div class="mx-panel__body is-column">
-          <div class="mx-block mx-block--pay">
+        <div class="fx-panel__body is-column">
+          <div class="fx-block mx-block--pay">
             <label class="title">
               运费
             </label>
@@ -162,7 +162,7 @@
             </span>
           </div>
 
-          <div class="mx-block mx-block--pay">
+          <div class="fx-block mx-block--pay">
             <label class="title">
               优惠
             </label>
@@ -176,10 +176,10 @@
 
 
     </div>
-    <div class="mx-container__footer is_fixed_bottom">
+    <div class="fx-container__footer is_fixed_bottom">
       <label class="text-price">合计：<span class="currency">￥</span>{{ pay_amount }}</label>
 
-      <button class="mx-button mx-button--checkout pull-right" @click="hook_submit_order">
+      <button class="fx-button mx-button--checkout pull-right" @click="hook_submit_order">
         去支付
       </button>
     </div>
@@ -200,6 +200,7 @@
         freight: 0,
         remark: '',
         pay_type: 1,
+        pay_params: {},
         checkout_skus_data: [],
         total_amount: 0,
         discount_amount: 0,
@@ -280,16 +281,18 @@
           buyer_remark: this.remark,
           from_client: 2,
           affiliate_code: '', // 促销优惠码
-          items: this.checkout_skus
+          items: this.checkout_skus,
+          sync_pay: 1  // 同步返回支付参数
         };
 
         // this.flag = false;
         this.$axiosWrap.post(api.order_create, post_data).then((result) => {
           if (result.success) {
             // 提交订单成功
-            vm.new_order = result.data;
+            vm.new_order = result.data.order;
+            vm.pay_params = result.data.pay_params;
             // 发起支付请求
-            vm.hook_pay_order(vm.new_order.rid)
+            vm.hook_pay_order()
           } else {
             vm.$message.error(result.status.message)
           }
@@ -299,22 +302,42 @@
         return true
       },
       // 去支付
-      hook_pay_order (rid) {
+      hook_pay_order () {
+        if (typeof WeixinJSBridge === 'undefined') {
+          if (document.addEventListener) {
+            document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady(), false)
+          } else if (document.attachEvent) {
+            document.attachEvent('WeixinJSBridgeReady', this.onBridgeReady());
+            document.attachEvent('onWeixinJSBridgeReady', this.onBridgeReady())
+          }
+        } else {
+          this.onBridgeReady()
+        }
+      },
+      onBridgeReady () {
+        const openId = localStorage.getItem('openId');
         const vm = this;
 
-        this.$axiosWrap.post(api.order_pay, {
-          rid: rid,
-          pay_type: this.pay_type
-        }).then((result) => {
-          if (result.success) {
-            // 自动跳转到支付
-
-          } else {
-            vm.$message.error(result.status.message)
-          }
-        }).catch((error) => {
-          vm.$message.error(error.message)
-        });
+        // 自动跳转到支付
+        WeixinJSBridge.invoke(
+          'getBrandWCPayRequest', {
+            appId: vm.pay_params.appId,
+            timeStamp: vm.pay_params.timeStamp,
+            nonceStr: vm.pay_params.nonceStr,
+            package: vm.pay_params.package,
+            signType: vm.pay_params.signType,
+            paySign: vm.pay_params.sign
+          }, (res) => {
+            console.log(res);
+            if (res.err_msg === 'get_brand_wcpay_request:ok') {
+              vm.$message.success('微信支付成功');
+              // 跳转到订单详情
+            } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
+              vm.$message.error('用户取消支付');
+            } else {
+              vm.$message.error('网路异常，请重试！');
+            }
+          })
       },
       // 私有方法，拼接字符串
       v_join_rid () {
@@ -338,45 +361,15 @@
 </script>
 
 <style scoped>
-  .mx-block--pay .title {
+  .fx-block--pay .title {
     color: #101010;
   }
-  .mx-block--pay {
+  .fx-block--pay {
     padding-right: 0;
     padding-left: 0;
   }
-  .mx-sku {
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: row;
-    margin-top: 16px;
-  }
-  .mx-sku__image {
-    width: 100px;
-    height: 100px;
-    flex: 0 0 auto;
-  }
-  .mx-sku__image img {
-    width: 100%;
-  }
-  .mx-sku__content {
-    flex: 1;
-    margin-left: 16px;
-    line-height: 20px;
-  }
-  .mx-sku__content .title {
-    height: 36px;
-  }
-  .mx-sku__content .mode {
-    font-size: 14px;
-    color: #888888;
-    margin-bottom: 20px;
-  }
-  .mx-sku__quantity {
-    flex: 0 0 auto;
-    line-height: 20px;
-  }
-  .mx-address--empty {
+
+  .fx-address--empty {
     line-height: 40px;
     padding: 15px 0;
     display: -webkit-flex;
@@ -385,12 +378,12 @@
     justify-content: flex-start;
     width: 100%;
   }
-  .mx-address--empty .empty-block {
+  .fx-address--empty .empty-block {
     flex: 1;
   }
 
-  .mx-address__item .indicator,
-  .mx-address--empty .indicator {
+  .fx-address__item .indicator,
+  .fx-address--empty .indicator {
     flex: 0 0 auto;
     cursor: pointer;
   }

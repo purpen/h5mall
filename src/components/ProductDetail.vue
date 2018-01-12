@@ -1,17 +1,17 @@
 <template>
-  <div class="mx-container">
-    <div class="mx-container__body">
-      <div class="mx-product-page">
+  <div class="fx-container">
+    <div class="fx-container__body">
+      <div class="fx-product-page">
 
-        <router-link :to="{ name: 'cart' }" class="mx-button mx-button--round is-share">
+        <router-link :to="{ name: 'cart' }" class="fx-button mx-button--round is-share">
           <i class="fa fa-share-alt"></i>
         </router-link>
 
-        <div class="mx-product-cover">
+        <div class="fx-product-cover">
           <img v-lazy="product.cover" class="image">
         </div>
 
-        <div class="mx-product-header">
+        <div class="fx-product-header">
           <h3 class="title">
             {{ product.name }}
           </h3>
@@ -21,7 +21,7 @@
         </div>
       </div>
 
-      <div class="mx-block small mx-product-brand">
+      <div class="fx-block small mx-product-brand">
         <router-link :to="{ name:'product', params: { rid: product.rid }}" class="media">
           <img v-lazy="product.brand.logo" class="image">
         </router-link>
@@ -32,7 +32,7 @@
         </span>
       </div>
 
-      <div class="mx-block mx-sku-group">
+      <div class="fx-block mx-sku-group">
         <label class="title">已选</label>
         <label class="summary">{{ choosed_sku }}</label>
 
@@ -41,27 +41,27 @@
         </span>
       </div>
 
-      <div class="mx-panel m-t-10 hot-comments">
-        <div class="mx-panel__title no-border">
+      <div class="fx-panel m-t-10 hot-comments">
+        <div class="fx-panel__title no-border">
           <label class="align-title">热门评价</label>
         </div>
-        <div class="mx-panel__body">
+        <div class="fx-panel__body">
 
         </div>
       </div>
 
-      <div class="mx-panel">
-        <div class="mx-panel__title no-border">
+      <div class="fx-panel">
+        <div class="fx-panel__title no-border">
           <label class="align-title">
             图文详情
           </label>
         </div>
-        <div class="mx-panel__body">
+        <div class="fx-panel__body">
           {{ product.content }}
         </div>
       </div>
 
-      <div class="mx-product-footer">
+      <div class="fx-product-footer">
         <a class="collect">
           <i class="fa fa-star-o"></i>
           <span>收藏</span>
@@ -70,17 +70,17 @@
           <i class="fa fa-headphones"></i>
           <span>客服</span>
         </a>
-        <router-link :to="{ 'name': 'cart' }" class="mx-badge flow-btn-cart">
+        <router-link :to="{ 'name': 'cart' }" class="fx-badge flow-btn-cart">
           <i class="fa fa-shopping-cart"></i>
           <span>购物车</span>
-          <sup class="mx-badge__content is-fixed" v-if="cart_total_count">{{ cart_total_count }}</sup>
+          <sup class="fx-badge__content is-fixed" v-if="cart_total_count">{{ cart_total_count }}</sup>
         </router-link>
         <a class="cart" @click="show_sku_modal('cart')">加入购物车</a>
         <a class="buy" @click="show_sku_modal('buy')">马上购买</a>
       </div>
 
       <div class="cover-bg" v-if="seen_servicer" @click="hide_service_dialog"></div>
-      <div class="mx-service" v-if="seen_servicer">
+      <div class="fx-service" v-if="seen_servicer">
         <label class="close" @click="hide_service_dialog">x</label>
         <i class="el-icon-service"></i>
         <h2>客服电话</h2>
@@ -89,7 +89,7 @@
 
       <div class="cover-bg" v-if="seen_sku_box" @click="hide_sku_modal"></div>
       <transition name="fade">
-        <div class="mx-sku-box clearfix" v-if="seen_sku_box">
+        <div class="fx-sku-box clearfix" v-if="seen_sku_box">
           <label class="close" @click="hide_sku_modal">x</label>
 
           <div class="sku-header">
@@ -454,48 +454,48 @@
 </script>
 
 <style scoped>
-  .mx-product-page {
+  .fx-product-page {
     position: relative;
     background: #ffffff;
   }
-  .mx-button--round.is-share {
+  .fx-button--round.is-share {
     border: none;
     position: absolute;
     right: 16px;
     top: 16px;
     z-index: 8;
   }
-  .mx-product-page .mx-product-cover {
+  .fx-product-page .fx-product-cover {
     text-align: center;
   }
-  .mx-product-page .mx-product-cover img {
+  .fx-product-page .fx-product-cover img {
     max-width: 100%;
     max-height: 480px;
   }
-  .mx-product-header {
+  .fx-product-header {
     padding: 0 15px 10px;
     background: #fff;
     border-bottom: 1px solid #E6E6E6;
   }
-  .mx-product-header .title {
+  .fx-product-header .title {
     font-size: 16px;
     line-height: 16px;
     margin: 10px auto;
   }
-  .mx-product-header .price {
+  .fx-product-header .price {
     font-size: 15px;
     color: #BE8914;
   }
 
-  .mx-product-brand .title {
+  .fx-product-brand .title {
     line-height: 50px;
     margin-left: 10px;
   }
-  .mx-product-brand .indicator {
+  .fx-product-brand .indicator {
     line-height: 50px;
   }
 
-  .mx-product-footer {
+  .fx-product-footer {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -503,7 +503,7 @@
     width: 100%;
     z-index: 2;
   }
-  .mx-product-footer a {
+  .fx-product-footer a {
     float: left;
     position: relative;
     width: 16%;
@@ -513,18 +513,18 @@
     justify-content: center;
     align-items: center;
   }
-  .mx-product-footer a i {
+  .fx-product-footer a i {
     margin-right: 10px;
   }
 
-  .mx-product-footer a.buy {
+  .fx-product-footer a.buy {
     border-right: none;
     width: 26%;
     font-size: 14px;
     background: #BE8914;
     color: #fff
   }
-  .mx-product-footer a.cart {
+  .fx-product-footer a.cart {
     border-right: none;
     width: 26%;
     font-size: 14px;
@@ -543,7 +543,7 @@
     background: #00000080;
   }
 
-  .mx-service {
+  .fx-service {
     width: 252px;
     height: 222px;
     background: #ffffff;
@@ -561,7 +561,7 @@
     font-size: 17px;
     border-radius: 6px;
   }
-  .mx-service .close {
+  .fx-service .close {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -573,16 +573,16 @@
     line-height: 20px;
     text-align: center;
   }
-  .mx-service h2 {
+  .fx-service h2 {
     font-weight: 600;
     color: #222;
     margin: 18px 0 12px;
   }
-  .mx-service .tel {
+  .fx-service .tel {
     color: #BE8914;
   }
 
-  .mx-sku-box {
+  .fx-sku-box {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -592,17 +592,17 @@
     padding-bottom: 50px;
     background: #fff;
   }
-  .mx-sku-box .block {
+  .fx-sku-box .block {
     margin: 20px 15px;
     font-size: 14px;
   }
-  .mx-sku-box .block.mx-quantity .block-title {
+  .fx-sku-box .block.fx-quantity .block-title {
     line-height: 30px;
   }
-  .mx-sku-box .block .sku-group {
+  .fx-sku-box .block .sku-group {
     margin-top: 10px;
   }
-  .mx-sku-box .block .option {
+  .fx-sku-box .block .option {
     background: #FAFAFA;
     border: 1px solid #E6E6E6;
     border-radius: 2px;
@@ -613,20 +613,20 @@
     margin-bottom: 10px;
     display: inline-block;
   }
-  .mx-sku-box .block .option.active{
+  .fx-sku-box .block .option.active{
     color: #BE8914;
     border-color: #BE8914;
   }
-  .mx-sku-box .block .option:last-child {
+  .fx-sku-box .block .option:last-child {
     margin-right: 0;
   }
-  .mx-sku-box .block .option[disabled] {
+  .fx-sku-box .block .option[disabled] {
     color: gray;
     border-color: #f1f1f1;
     cursor: not-allowed;
     background: #f1f1f1;
   }
-  .mx-sku-box .sku-header {
+  .fx-sku-box .sku-header {
     padding: 10px 0 40px 126px;
     position: relative;
     border-bottom: 1px solid #0000001a;
@@ -657,7 +657,7 @@
     background-color: #fff;
   }
 
-  .mx-sku-box .close {
+  .fx-sku-box .close {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -671,7 +671,7 @@
     line-height: 25px;
     text-align: center;
   }
-  .mx-sku-box .sku-footer {
+  .fx-sku-box .sku-footer {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -679,7 +679,7 @@
     font-size: 14px;
     z-index: 9;
   }
-  .mx-sku-box .sku-footer .btn-group .confirm {
+  .fx-sku-box .sku-footer .btn-group .confirm {
     background: #BE8914;
     color: #fff;
     width: 100%;
@@ -706,17 +706,17 @@
     border: 1px solid #BE8914;
   }
 
-  .mx-btn-cart {
+  .fx-btn-cart {
     position: absolute;
     right: 20px;
     top: 20px;
     z-index: 99;
     font-size: 15px;
   }
-  .mx-product-header,
-  .mx-sku-group,
-  .mx-ship-address,
-  .mx-product-brand
+  .fx-product-header,
+  .fx-sku-group,
+  .fx-ship-address,
+  .fx-product-brand
   {
     margin-top: 10px;
   }

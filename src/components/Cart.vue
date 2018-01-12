@@ -1,11 +1,11 @@
 <template>
-  <div class="mx-container">
-    <div class="mx-container__body">
+  <div class="fx-container">
+    <div class="fx-container__body m-t-10">
 
-      <div class="mx-cart" v-if="is_login">
-        <div class="mx-cart__body">
+      <div class="fx-cart" v-if="is_login">
+        <div class="fx-cart__body">
 
-          <div class="mx-cart__item clearfix" v-for="(item, index) in cart.items" :key="item.rid">
+          <div class="fx-cart__item clearfix" v-for="(item, index) in cart.items" :key="item.rid">
             <div class="left-side pull-left">
               <input type="checkbox" class="checkbox" :value="item.rid" v-model="checked_list"  />
             </div>
@@ -16,16 +16,16 @@
               <p class="sale_price"><span class="currency">￥</span>{{ item.product.sale_price }}</p>
             </div>
             <label class="close">
-              <i class="el-icon-close"></i>
+              <i class="fx-icon-close-error"></i>
             </label>
-            <div class="mx-input mx-input--mini quantity">
-              <input type="text" class="mx-input__inner" v-model.number="item.quantity" @keyup="calculate_amount">
+            <div class="fx-input mx-input--mini quantity">
+              <input type="text" class="fx-input__inner" v-model.number="item.quantity" @keyup="calculate_amount">
             </div>
           </div>
 
         </div>
 
-        <div class="mx-cart__footer">
+        <div class="fx-cart__footer">
           <div class="left-side pull-left">
             <input type="checkbox" class="checkbox" name="check-all" id="check-all" v-model="checked" @click="handle_checked_all" />
           </div>
@@ -33,15 +33,15 @@
 
           <label class="subtotal">合计：<span class="currency">￥</span>{{ cart.total_amount }}</label>
 
-          <button class="mx-button mx-button--checkout pull-right" @click="hook_checkout">
+          <button class="fx-button mx-button--checkout pull-right" @click="hook_checkout">
             结算
           </button>
         </div>
       </div>
 
-      <div class="mx-cart__empty" v-else>
+      <div class="fx-cart__empty" v-else>
         <p>登录后才能看到购物车商品哦~</p>
-        <button class="mx-button mx-button--danger" @click="hook_login_click">
+        <button class="fx-button mx-button--danger" @click="hook_login_click">
           立即登录
         </button>
       </div>
@@ -153,73 +153,73 @@
 </script>
 
 <style scoped>
-  .mx-cart {
+  .fx-cart {
     background: #efeef4;
     position: relative;
     min-height: 400px;
     flex: 1;
   }
-  .mx-cart__body {
+  .fx-cart__body {
     background: #ffffff;
   }
-  .mx-cart__item {
+  .fx-cart__item {
     padding: 20px 15px;
     border-bottom: 1px solid #f3f3f3;
     position: relative;
   }
-  .mx-cart__item .close {
+  .fx-cart__item .close {
     position: absolute;
     top: 20px;
     right: 20px;
     cursor: pointer;
     color: #a4a4a6;
   }
-  .mx-cart__item .left-side {
+  .fx-cart__item .left-side {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80px;
   }
-  .mx-cart__item .image {
+  .fx-cart__item .image {
     width: 80px;
     height: 80px;
     margin-left: 15px;
   }
-  .mx-cart__item .content {
+  .fx-cart__item .content {
     margin-left: 110px;
     padding: 0 0 0 20px;
   }
-  .mx-cart__item .content .title {
+  .fx-cart__item .content .title {
     font-size: 14px;
     color: #010101;
     line-height: 20px;
     margin-bottom: 10px;
   }
-  .mx-cart__item .content .sku {
+  .fx-cart__item .content .sku {
     font-size: 12px;
     color: #888888;
     margin-bottom: 20px;
   }
-  .mx-cart__item .content .sale_price {
+  .fx-cart__item .content .sale_price {
     color: #010101;
     font-weight: 500;
     font-size: 14px;
   }
-  .mx-cart__item .content .sale_price .currency {
+  .fx-cart__item .content .sale_price .currency {
     font-size: 12px;
   }
-  .mx-cart__item .quantity {
+  .fx-cart__item .quantity {
     position: absolute;
     bottom: 20px;
     right: 20px;
     width: 60px;
   }
-  .mx-cart__item .quantity .mx-input__inner {
+  .fx-cart__item .quantity .fx-input__inner {
     text-align: center;
     border-color: #cecece;
   }
 
-  .mx-cart__footer {
+  .fx-cart__footer {
     background: #ffffff;
     position: fixed;
     bottom: 51px;
@@ -227,30 +227,30 @@
     z-index: 9;
     width: 100%;
   }
-  .mx-cart__footer .left-side {
+  .fx-cart__footer .left-side {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 40px;
     margin-left: 15px;
   }
-  .mx-cart__footer label {
+  .fx-cart__footer label {
     line-height: 40px;
     color: #6d6b78;
     margin-left: 10px;
   }
-  .mx-cart__footer .subtotal {
+  .fx-cart__footer .subtotal {
     color: #fc5449;
     font-weight: 500;
     margin-left: 20px;
   }
 
-  .mx-cart__empty {
+  .fx-cart__empty {
     margin: 50px auto;
     text-align: center;
     min-height: 300px;
   }
-  .mx-cart__empty p {
+  .fx-cart__empty p {
     margin: 15px auto;
   }
 

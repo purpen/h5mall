@@ -1,11 +1,11 @@
 <template>
-  <div class="mx-container">
-    <div class="mx-container__body">
-      <div class="mx-address">
+  <div class="fx-container">
+    <div class="fx-container__body">
+      <div class="fx-address">
         <div
           v-for="address in address_list"
           :key="address.rid"
-          class="mx-address__item">
+          class="fx-address__item">
           <div class="content">
             <span class="icon pull-left" @click="hook_selected_address(address.rid)">
               <i class="fa fa-map-marker"></i>

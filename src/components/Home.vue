@@ -1,6 +1,6 @@
 <template>
-  <div class="mx-container">
-    <div class="mx-banner">
+  <div class="fx-container">
+    <div class="fx-banner">
       <swiper :options="swiper_option">
         <swiper-slide
           v-for="slide in swiper_slides"
@@ -11,17 +11,32 @@
       </swiper>
     </div>
 
-    <div class="mx-container__body">
+    <div class="fx-label m-b-10">
+      <label class="fx-label__item">
+        <i class="fx-icon-check-mark"></i> 正品保证
+      </label>
+      <label class="fx-label__item">
+        <i class="fx-icon-check-mark"></i> 七天退换
+      </label>
+      <label class="fx-label__item">
+        <i class="fx-icon-check-mark"></i> 极速退款
+      </label>
+      <label class="fx-label__item">
+        <i class="fx-icon-check-mark"></i> 全场包邮
+      </label>
+    </div>
 
-      <div class="mx-panel">
-        <div class="mx-panel__title no-border">
+    <div class="fx-container__body">
+
+      <div class="fx-panel">
+        <div class="fx-panel__title no-border">
           <label>新品上架</label>
           <router-link :to="{ 'name': 'orders' }" class="pull-right">
             查看全部
           </router-link>
         </div>
-        <div class="mx-panel__body">
-          <div class="mx-products--latest">
+        <div class="fx-panel__body">
+          <div class="fx-products--latest">
             <mx-product
               v-for="(product, index) in newest_products"
               :product="product"
@@ -32,26 +47,26 @@
         </div>
       </div>
 
-      <div class="mx-panel">
-        <div class="mx-panel__title no-border">
+      <div class="fx-panel">
+        <div class="fx-panel__title no-border">
           <label>热门品牌</label>
           <router-link :to="{ 'name': 'orders' }" class="pull-right">
             查看全部
           </router-link>
         </div>
-        <div class="mx-panel__body">
+        <div class="fx-panel__body">
 
         </div>
       </div>
 
-      <div class="mx-panel">
-        <div class="mx-panel__title no-border">
+      <div class="fx-panel">
+        <div class="fx-panel__title no-border">
           <label>热门分类</label>
           <router-link :to="{ 'name': 'orders' }" class="pull-right">
             查看全部
           </router-link>
         </div>
-        <div class="mx-panel__body">
+        <div class="fx-panel__body">
 
         </div>
       </div>
@@ -138,13 +153,28 @@
 </script>
 
 <style scoped>
-  .mx-banner {
-    height: 390px;
+  .fx-banner {
+    height: 240px;
     background: #fafafa;
+    overflow: hidden;
   }
-  .mx-banner .swiper-slide .image {
+  .fx-banner .swiper-slide .image {
     width: 100%;
-    max-height: 390px;
+    max-height: 240px;
+  }
+  .fx-label {
+    background: #ffffff;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-around;
+  }
+  .fx-label__item {
+    line-height: 40px;
+    color: #959595;
+    font-size: 12px;
+  }
+  .fx-label__item i {
+    color: #fc5449;
   }
 
 </style>

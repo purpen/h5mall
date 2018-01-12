@@ -1,19 +1,18 @@
 <template>
-  <div class="mx-container">
+  <div class="fx-container">
 
-    <div class="mx-search">
-      <div class="mx-input mx-input--prefix mx-input--mini">
-        <input type="search" class="mx-input__inner mx-input--search" placeholder="智能牙刷 | 化妆镜" />
-        <span class="mx-input__prefix">
+    <div class="fx-search">
+      <div class="fx-input mx-input--prefix mx-input--mini">
+        <input type="search" class="fx-input__inner mx-input--search" placeholder="智能牙刷 | 化妆镜" />
+        <span class="fx-input__prefix">
           <i class="fa fa-search"></i>
         </span>
       </div>
     </div>
 
-    <div class="mx-container__body is-category">
-
-      <div class="mx-container__nav">
-          <ul class="mx-list">
+    <div class="fx-container__body is-category">
+      <div class="fx-container__nav">
+          <ul class="fx-list">
             <li
               v-for="category in top_categories"
               @click="hook_top_category(category.id)"
@@ -23,20 +22,21 @@
             </li>
           </ul>
       </div>
-      <div class="mx-container__content">
-        <div class="mx-adv">
+      <div class="fx-container__content">
+        <div class="fx-adv">
           广告位
         </div>
-        <div class="mx-category">
+        <div class="fx-category">
           <h3 class="category-title">{{ current_category.name }}</h3>
-          <div class="mx-category__list">
-
+          <div class="fx-category__list">
             <router-link
               v-for="child_category in children_categories"
               :key="child_category.id"
               :to="{ 'name': 'products', 'params': { 'pid': current_pid , 'cid': child_category.id } }"
-              class="mx-category__item">
-                <img v-lazy="child_category.cover" class="image" >
+              class="fx-category__item">
+                <div class="image">
+                  <img v-lazy="child_category.cover" :alt="child_category.name" >
+                </div>
                 <h4 class="name">{{ child_category.name }}</h4>
             </router-link>
 
@@ -122,62 +122,68 @@
 </script>
 
 <style scoped>
-  .mx-search {
+  .fx-search {
     background: #ffffff;
     border-bottom: 1px solid #d5d5d5;
-    padding: 10px 20px;
+    padding: 10px 16px;
     flex: 0 0 auto;
   }
-  .mx-container__body.is-category {
+  .fx-container__body.is-category {
     flex-direction: row;
   }
-  .mx-container__nav {
+  .fx-container__nav {
     background: #ffffff;
-    flex: 0 0 10em;
+    flex: 0 0 6.5em;
     border-right: 1px solid #d5d5d5;
-    padding-top: 30px;
+    padding-top: 20px;
   }
-  .mx-container__content {
+  .fx-container__content {
     background: #ffffff;
     flex: 1;
     padding: 20px;
   }
-  .mx-adv {
-    height: 200px;
+  .fx-adv {
+    height: 120px;
     background: #fafafa;
     text-align: center;
   }
-  .mx-category .category-title {
+  .fx-category .category-title {
     margin: 20px auto;
     color: #959595;
   }
-  .mx-category__list {
+  .fx-category__list {
     display: -webkit-flex; /* Safari */
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
   }
-  .mx-category__item {
-    flex: 0 0 auto;
+  .fx-category__item {
+    flex: 0 0 33.3333%;
     margin-bottom: 15px;
     text-align: center;
   }
-  .mx-category__item .image {
-    height: 120px;
+  .fx-category__item .image {
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+    margin: 0 auto;
   }
-  .mx-category__item .name {
+  .fx-category__item .image img {
+    width: 100%;
+  }
+  .fx-category__item .name {
     line-height: 40px;
   }
 
-  .mx-list .item {
+  .fx-list .item {
     border-left: 4px solid transparent;
-    padding-left: 20px;
+    padding-left: 12px;
     padding-top: 5px;
     padding-bottom: 5px;
     margin-bottom: 20px;
     cursor: pointer;
   }
-  .mx-list .item.active {
+  .fx-list .item.active {
     border-left-color: #fc5449;
   }
 

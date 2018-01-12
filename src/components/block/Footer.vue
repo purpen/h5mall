@@ -1,10 +1,10 @@
 <template>
-  <footer class="mx-footer" v-if="show_footer">
+  <footer class="fx-footer" v-if="show_footer">
     <label
       @click="hook_menu_click('home')"
       :class="{ active: is_actived(0)}"
       class="main-menu">
-      <i class="fa fa-home"></i>
+      <i class="fx-icon-home fx-2x"></i>
       <span>首页</span>
     </label>
 
@@ -12,7 +12,7 @@
       @click="hook_menu_click('find')"
       :class="{ active: is_actived(1)}"
       class="main-menu">
-      <i class="fa fa-search"></i>
+      <i class="fx-icon-classify fx-2x"></i>
       <span>分类</span>
     </label>
 
@@ -20,11 +20,11 @@
       @click="hook_menu_click('cart')"
       :class="{ active: is_actived(2)}"
       class="main-menu">
-      <i class="fa fa-shopping-cart"></i>
-      <span class="mx-badge">
+      <i class="fx-icon-cart fx-2x"></i>
+      <span class="fx-badge">
         购物车
         <span
-          class="mx-badge__content is-fixed"
+          class="fx-badge__content is-fixed"
           v-if="cart_total_count">
           {{ cart_total_count }}
         </span>
@@ -35,7 +35,7 @@
       @click="hook_menu_click('user')"
       :class="{ active: is_actived(3)}"
       class="main-menu">
-      <i class="fa fa-user"></i>
+      <i class="fx-icon-personal-center fx-2x"></i>
       <span>我的</span>
     </label>
   </footer>
@@ -83,7 +83,7 @@
 </script>
 
 <style scoped>
-  .mx-footer {
+  .fx-footer {
     background: #fff;
     border-top: 1px solid #d5d5d5;
     display: -webkit-flex;
@@ -95,7 +95,7 @@
     bottom: 0;
     left: 0;
   }
-  .mx-footer .main-menu {
+  .fx-footer .main-menu {
     flex: 1;
     height: 50px;
     color: #959595;
@@ -106,17 +106,14 @@
     align-items: center;
     flex-direction: column;
   }
-  .mx-footer .main-menu i {
+  .fx-footer .main-menu i {
     margin-bottom: 5px;
-    font-size: 14px;
+    font-size: 16px;
   }
-  .mx-footer .main-menu.active {
+  .fx-footer .main-menu.active {
     color: #FF4500;
   }
-  .mx-footer .main-menu .mx-badge__content {
-    font-size: 10px;
-  }
-  .mx-footer .main-menu .mx-badge__content.is-fixed {
+  .fx-footer .main-menu .fx-badge__content.is-fixed {
     top: -15px;
     right: 10px;
   }

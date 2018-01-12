@@ -1,7 +1,7 @@
 <template>
-  <div class="mx-container">
+  <div class="fx-container">
 
-    <div class="mx-container__menu">
+    <div class="fx-container__menu">
       <ul class="list">
         <li
           class="item"
@@ -14,8 +14,8 @@
       </ul>
     </div>
 
-    <div class="mx-container__body">
-      <div class="mx-products--category">
+    <div class="fx-container__body">
+      <div class="fx-products--category">
         <mx-product
           v-for="(product, index) in category_products"
           :product="product"
@@ -100,7 +100,7 @@
 </script>
 
 <style scoped>
-  .mx-products--category {
+  .fx-products--category {
     padding: 30px 16px 50px;
   }
 

@@ -1,18 +1,12 @@
 <template>
-  <div class="mx-container">
-    <div class="mx-container__title">
-      <div class="btns">
-        <i class="fa fa-gear"></i>
-      </div>
-    </div>
-    <div class="mx-container__body is-mine">
+  <div class="fx-container">
+    <div class="fx-container__body is-mine">
 
-      <div class="mx-panel">
-        <div class="mx-panel__body">
-
+      <div class="fx-panel">
+        <div class="fx-panel__body">
           <div class="user" v-if="is_login">
             <div class="user-avatar">
-              <i class="fa fa-user"></i>
+              <i class="fx-icon-people"></i>
             </div>
             <div class="user-profile">
               <label>{{ user.username }}</label>
@@ -32,71 +26,71 @@
         </div>
       </div>
 
-      <div class="mx-panel">
-        <div class="mx-panel__title">
+      <div class="fx-panel">
+        <div class="fx-panel__title">
           <label>我的订单</label>
           <router-link :to="{ 'name': 'orders' }" class="pull-right">
             查看全部订单
           </router-link>
         </div>
-        <div class="mx-panel__body">
+        <div class="fx-panel__body">
           <router-link :to="{ 'name': 'orders' }" class="item">
-            <i class="fa fa-credit-card"></i>
+            <i class="fx-icon-wait-pay"></i>
             待付款
           </router-link>
           <router-link :to="{ 'name': 'orders' }" class="item">
-            <i class="fa fa-send"></i>
+            <i class="fx-icon-wait-send"></i>
             待发货
           </router-link>
           <router-link :to="{ 'name': 'orders' }" class="item">
-            <i class="fa fa-truck"></i>
+            <i class="fx-icon-wait-confirm"></i>
             待收货
           </router-link>
           <router-link :to="{ 'name': 'orders' }" class="item">
-            <i class="fa fa-retweet"></i>
+            <i class="fx-icon-order"></i>
             售后服务
           </router-link>
         </div>
       </div>
 
-      <div class="mx-panel is-u1of4">
-        <div class="mx-panel__title">
+      <div class="fx-panel is-u1of4">
+        <div class="fx-panel__title">
           <label>我的服务</label>
         </div>
-        <div class="mx-panel__body">
+        <div class="fx-panel__body">
           <router-link :to="{ 'name': 'orders' }" class="item">
-            <i class="fa fa-heart is-gift"></i>
+            <i class="fx-icon-like"></i>
             心愿单
           </router-link>
           <router-link :to="{ 'name': 'orders' }" class="item">
-            <i class="fa fa-envelope"></i>
+            <i class="fx-icon-red-packets "></i>
             红包
           </router-link>
           <router-link :to="{ 'name': 'orders' }" class="item">
-            <i class="fa fa-gift is-gift"></i>
+            <i class="fx-icon-gift is-gift"></i>
             礼物
           </router-link>
 
           <router-link :to="{ 'name': 'address' }" class="item">
-            <i class="fa fa-map-marker is-yellow"></i>
+            <i class="fx-icon-address"></i>
             地址
           </router-link>
           <router-link :to="{ 'name': 'orders' }" class="item">
-            <i class="fa fa-commenting"></i>
+            <i class="fx-icon-dialogbox"></i>
             意见反馈
           </router-link>
           <router-link :to="{ 'name': 'orders' }" class="item">
-            <i class="fa fa-info is-yellow"></i>
+            <i class="fx-icon-mation-prompt"></i>
             关于我们
           </router-link>
         </div>
       </div>
 
-      <div class="mx-panel">
-        <div class="mx-panel__title">
+      <div class="fx-panel">
+        <div class="fx-panel__title">
           <label>猜你喜欢</label>
         </div>
-        <div class="mx-panel__body">
+        <div class="fx-panel__body">
           <div class="container-placeholder">
             正在加载中...
           </div>
@@ -144,29 +138,12 @@
 </script>
 
 <style scoped>
-  .mx-container__title {
-    background: #ffffff;
-    display: -webkit-flex;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: 40px;
-  }
-  .btns {
-    font-size: 16px;
-    margin-right: 20px;
-    color: #959595;
-  }
-  .mx-container__body.is-mine {
+  .fx-container__body.is-mine {
     background: #efeef4;
     flex-direction: column;
   }
-
   .is-gift {
     color: #fc5449;
-  }
-  .is-yellow {
-    color: #fe9c15;
   }
 
   .user {
@@ -175,19 +152,16 @@
     flex-direction: row;
   }
   .user-avatar {
-    font-size: 50px;
-    border: 1px solid #d5d5d5;
-    border-radius: 100px;
+    font-size: 70px;
     color: #d5d5d5;
-    width: 50px;
-    height: 50px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    width: 80px;
+    height: 70px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     text-align: center;
-    padding: 10px;
   }
   .user-profile {
-    margin-left: 20px;
+    margin-left: 16px;
     line-height: 22px;
     margin-top: 20px;
   }

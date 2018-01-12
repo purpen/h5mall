@@ -1,5 +1,5 @@
 <template>
-  <div class="mix-login-box">
+  <div class="fx-login-box">
     <Logo></Logo>
 
     <el-form ref="form" :model="form" :rules="rules">
