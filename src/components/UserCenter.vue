@@ -1,5 +1,12 @@
 <template>
   <div class="fx-container">
+    <fx-header>
+      <label class="action" slot="right-sider">
+        <i class="fx-icon-settings">
+          <span class="path2"></span>
+        </i>
+      </label>
+    </fx-header>
     <div class="fx-container__body is-mine">
 
       <div class="fx-panel">
@@ -29,26 +36,23 @@
       <div class="fx-panel">
         <div class="fx-panel__title">
           <label>我的订单</label>
-          <router-link :to="{ 'name': 'orders' }" class="pull-right">
-            查看全部订单
-          </router-link>
         </div>
         <div class="fx-panel__body">
-          <router-link :to="{ 'name': 'orders' }" class="item">
+          <router-link :to="{ 'name': 'orders', 'params': { 'status': 1 }  }" class="item">
             <i class="fx-icon-wait-pay"></i>
             待付款
           </router-link>
-          <router-link :to="{ 'name': 'orders' }" class="item">
+          <router-link :to="{ 'name': 'orders', 'params': { 'status': 10 } }" class="item">
             <i class="fx-icon-wait-send"></i>
             待发货
           </router-link>
-          <router-link :to="{ 'name': 'orders' }" class="item">
+          <router-link :to="{ 'name': 'orders', 'params': { 'status': 20 } }" class="item">
             <i class="fx-icon-wait-confirm"></i>
             待收货
           </router-link>
           <router-link :to="{ 'name': 'orders' }" class="item">
             <i class="fx-icon-order"></i>
-            售后服务
+            全部订单
           </router-link>
         </div>
       </div>
@@ -103,6 +107,7 @@
 
 <script>
   import api from '@/constant/api'
+  import FxHeader from '@/components/block/FxHeader'
 
   export default {
     name: 'UserCenter',
@@ -114,9 +119,6 @@
     computed: {
       is_login () {
         return this.$store.state.token
-      },
-      title () {
-        return '我的'
       }
     },
     mounted () {
@@ -133,6 +135,9 @@
           vm.$message.error(error.message)
         })
       }
+    },
+    components: {
+      FxHeader
     }
   }
 </script>

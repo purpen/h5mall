@@ -1,5 +1,6 @@
 <template>
   <div class="fx-container">
+    <fx-header :show_back="true"></fx-header>
     <div class="fx-container__body">
       <div class="fx-panel">
         <div class="fx-panel__body">
@@ -179,7 +180,7 @@
     <div class="fx-container__footer is_fixed_bottom">
       <label class="text-price">合计：<span class="currency">￥</span>{{ pay_amount }}</label>
 
-      <button class="fx-button mx-button--checkout pull-right" @click="hook_submit_order">
+      <button class="fx-button fx-button--checkout pull-right" @click="hook_submit_order">
         去支付
       </button>
     </div>
@@ -187,7 +188,9 @@
 </template>
 
 <script>
+
   import api from '@/constant/api'
+  import FxHeader from '@/components/block/FxHeader'
 
   export default {
     name: 'Checkout',
@@ -207,6 +210,9 @@
         selected_address: {},
         new_order: {}
       }
+    },
+    components: {
+      FxHeader
     },
     computed: {
       pay_amount () {
@@ -315,7 +321,7 @@
         }
       },
       onBridgeReady () {
-        const openId = localStorage.getItem('openId');
+        // const openId = localStorage.getItem('openId');
         const vm = this;
 
         // 自动跳转到支付

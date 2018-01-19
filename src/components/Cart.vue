@@ -1,5 +1,6 @@
 <template>
   <div class="fx-container">
+    <fx-header></fx-header>
     <div class="fx-container__body m-t-10">
 
       <div class="fx-cart" v-if="is_login">
@@ -18,7 +19,7 @@
             <label class="close">
               <i class="fx-icon-close-error"></i>
             </label>
-            <div class="fx-input mx-input--mini quantity">
+            <div class="fx-input fx-input--mini quantity">
               <input type="text" class="fx-input__inner" v-model.number="item.quantity" @keyup="calculate_amount">
             </div>
           </div>
@@ -33,7 +34,7 @@
 
           <label class="subtotal">合计：<span class="currency">￥</span>{{ cart.total_amount }}</label>
 
-          <button class="fx-button mx-button--checkout pull-right" @click="hook_checkout">
+          <button class="fx-button fx-button--checkout pull-right" @click="hook_checkout">
             结算
           </button>
         </div>
@@ -51,8 +52,10 @@
 </template>
 
 <script>
+
   import api from '@/constant/api'
   import * as types from '@/vuex/types'
+  import FxHeader from '@/components/block/FxHeader'
 
   export default {
     name: 'Cart',
@@ -67,12 +70,12 @@
         }
       }
     },
+    components: {
+      FxHeader
+    },
     computed: {
       is_login () {
         return this.$store.state.token
-      },
-      title () {
-        return this.$router.history.current.meta.title
       }
     },
     created () {

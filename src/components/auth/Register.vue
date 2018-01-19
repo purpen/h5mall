@@ -1,38 +1,44 @@
 <template>
-  <div class="fx-register-box">
-    <Logo></Logo>
-    <el-form ref="form" :model="form" :rules="rules">
-      <el-form-item prop="account" class="mix-form-group">
-        <el-input v-model="form.account" placeholder="账号" clearable></el-input>
-      </el-form-item>
+  <div class="fx-container">
+    <fx-button-back></fx-button-back>
+    <div class="fx-container__body">
+      <div class="fx-register-box">
+        <Logo></Logo>
+        <el-form ref="form" :model="form" :rules="rules">
+          <el-form-item prop="account" class="mix-form-group">
+            <el-input v-model="form.account" placeholder="账号" clearable></el-input>
+          </el-form-item>
 
-      <el-form-item prop="username" class="mix-form-group">
-        <el-input v-model="form.username" placeholder="用户名" clearable></el-input>
-      </el-form-item>
+          <el-form-item prop="username" class="mix-form-group">
+            <el-input v-model="form.username" placeholder="用户名" clearable></el-input>
+          </el-form-item>
 
-      <el-form-item prop="passwd" class="mix-form-group">
-        <el-input type="password" v-model="form.passwd"  placeholder="密码" clearable></el-input>
-      </el-form-item>
+          <el-form-item prop="passwd" class="mix-form-group">
+            <el-input type="password" v-model="form.passwd"  placeholder="密码" clearable></el-input>
+          </el-form-item>
 
-      <el-form-item prop="confirm_passwd" class="mix-form-group">
-        <el-input type="password" v-model="form.confirm_passwd"  placeholder="确认密码" clearable></el-input>
-      </el-form-item>
+          <el-form-item prop="confirm_passwd" class="mix-form-group">
+            <el-input type="password" v-model="form.confirm_passwd"  placeholder="确认密码" clearable></el-input>
+          </el-form-item>
 
-      <el-form-item>
-        <el-button type="primary" class="mix-btn-fluid" @click="handle_submit('form')" :disabled="!is_click">{{ register_btn_text }}</el-button>
-      </el-form-item>
+          <el-form-item>
+            <el-button type="primary" class="mix-btn-fluid" @click="handle_submit('form')" :disabled="!is_click">{{ register_btn_text }}</el-button>
+          </el-form-item>
 
-    </el-form>
+        </el-form>
 
-    <p class="exist">已有账号？
-      <router-link to="login">立即登录</router-link>
-    </p>
+        <p class="exist">已有账号？
+          <router-link to="login">立即登录</router-link>
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  import Logo from '@/components/block/Logo'
   import api from '@/constant/api'
+  import Logo from '@/components/block/Logo'
+  import FxButtonBack from '@/components/fx/FxButtonBack'
 
   export default {
     name: 'Register',
@@ -126,7 +132,8 @@
       }
     },
     components: {
-      Logo
+      Logo,
+      FxButtonBack
     },
     computed: {
       is_login () {
@@ -143,5 +150,9 @@
 </script>
 
 <style scoped>
-
+  .fx-register-box {
+    background: #ffffff;
+    flex: 1;
+    padding: 50px 16px 0;
+  }
 </style>

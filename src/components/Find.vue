@@ -2,8 +2,8 @@
   <div class="fx-container">
 
     <div class="fx-search">
-      <div class="fx-input mx-input--prefix mx-input--mini">
-        <input type="search" class="fx-input__inner mx-input--search" placeholder="智能牙刷 | 化妆镜" />
+      <div class="fx-input fx-input--prefix fx-input--mini">
+        <input type="search" class="fx-input__inner fx-input--search" placeholder="智能牙刷 | 化妆镜" />
         <span class="fx-input__prefix">
           <i class="fa fa-search"></i>
         </span>
@@ -67,9 +67,6 @@
     computed: {
       is_login () {
         return this.$store.state.token
-      },
-      title () {
-        return this.$router.history.current.meta.title
       }
     },
     mounted () {

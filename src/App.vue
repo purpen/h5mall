@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <Header></Header>
     <router-view></router-view>
     <Footer></Footer>
     <!-- set progressbar -->
@@ -9,7 +8,6 @@
 </template>
 
 <script>
-  import Header from '@/components/block/Header'
   import Footer from '@/components/block/Footer'
 
   // 导入样式表
@@ -48,7 +46,6 @@
       })
     },
     components: {
-      Header,
       Footer
     }
   }

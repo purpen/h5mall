@@ -7,6 +7,7 @@ export const REVOKE_TOKEN = 'revoke_token';
 
 export const SHOW_HEADER = 'show_header';
 export const SHOW_FOOTER = 'show_footer';
+export const UPDATE_PAGE_TITLE = 'update_page_title';
 // 更
 export const UPDATE_MENU_INDEX = 'update_menu_index';
 

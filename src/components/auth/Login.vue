@@ -1,43 +1,50 @@
 <template>
-  <div class="fx-login-box">
-    <Logo></Logo>
+  <div class="fx-container">
+    <fx-button-back></fx-button-back>
+    <div class="fx-container__body">
+      <div class="fx-login-box">
+        <Logo></Logo>
 
-    <el-form ref="form" :model="form" :rules="rules">
-      <el-form-item prop="account" class="mix-form-group">
-        <el-input v-model="form.account" placeholder="账号" clearable></el-input>
-      </el-form-item>
+        <el-form ref="form" :model="form" :rules="rules">
+          <el-form-item prop="account" class="mix-form-group">
+            <el-input v-model="form.account" placeholder="账号" clearable></el-input>
+          </el-form-item>
 
-      <el-form-item prop="passwd" class="mix-form-group">
-        <el-input type="password" v-model="form.passwd"  placeholder="密码" clearable></el-input>
-      </el-form-item>
+          <el-form-item prop="passwd" class="mix-form-group">
+            <el-input type="password" v-model="form.passwd"  placeholder="密码" clearable></el-input>
+          </el-form-item>
 
-      <el-form-item>
-        <el-button type="primary" class="mix-btn-fluid" @click="handle_submit('form')">{{ login_btn_text }}</el-button>
-      </el-form-item>
+          <el-form-item>
+            <el-button type="primary" class="mix-btn-fluid" @click="handle_submit('form')">{{ login_btn_text }}</el-button>
+          </el-form-item>
 
-      <p class="exist">
-        <router-link class="register" to="register">注册</router-link>
-        <router-link to="forgot_passwd">忘记密码</router-link>
-      </p>
+          <p class="exist">
+            <router-link class="register" to="register">注册</router-link>
+            <router-link to="forgot_passwd">忘记密码</router-link>
+          </p>
 
-      <div class="third-part">
-        <p>第三方账号登录</p>
-        <div class="wwq clearfix">
-          <a class="wx"></a>
-          <a class="wb"></a>
-          <a class="qq"></a>
-        </div>
+          <div class="third-part">
+            <p>第三方账号登录</p>
+            <div class="wwq clearfix">
+              <a class="wx"></a>
+              <a class="wb"></a>
+              <a class="qq"></a>
+            </div>
+          </div>
+        </el-form>
+
       </div>
-
-    </el-form>
-
+    </div>
   </div>
 </template>
 
 <script>
-  import Logo from '@/components/block/Logo';
+
   import api from '@/constant/api';
   import * as types from '@/vuex/types';
+  import Logo from '@/components/block/Logo';
+  import FxHeader from '@/components/block/FxHeader'
+  import FxButtonBack from '@/components/fx/FxButtonBack'
 
   export default {
     name: 'Login',
@@ -105,7 +112,9 @@
       }
     },
     components: {
-      Logo
+      Logo,
+      FxHeader,
+      FxButtonBack
     },
     computed: {
       is_login () {
@@ -122,6 +131,12 @@
 </script>
 
 <style scoped>
+  .fx-login-box {
+    background: #ffffff;
+    flex: 1;
+    padding: 50px 16px 0;
+  }
+
   .exist {
     text-align: center;
     font-size: 14px;

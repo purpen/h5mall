@@ -81,7 +81,6 @@ const routes = [
     props: true,
     meta: {
       title: '订单结算',
-      show_header: false,
       show_footer: false,
       required: true
     }
@@ -109,7 +108,7 @@ const routes = [
         name: 'user',
         component: UserCenter,
         meta: {
-          show_header: false
+          title: '我的'
         }
       },
       {
@@ -124,6 +123,7 @@ const routes = [
         path: 'orders',
         name: 'orders',
         component: UserOrders,
+        props: true,
         meta: {
           title: '我的订单',
           required: true
@@ -193,7 +193,6 @@ const routes = [
     name: 'login',
     component: Login,
     meta: {
-      title: '登录',
       show_header: false,
       show_footer: false
     }
@@ -246,6 +245,10 @@ router.beforeEach((to, from, next) => {
     store.commit(types.SHOW_HEADER, false)
   } else {
     store.commit(types.SHOW_HEADER, true)
+  }
+  // 显示标题
+  if (to.meta.title) {
+    store.commit(types.UPDATE_PAGE_TITLE, to.meta.title)
   }
   // 是否显示底部
   if (to.meta.show_footer === false) {

@@ -78,6 +78,9 @@ const mutations = {
     state.layout_config.show_footer = data;
     localStorage.setItem('show_footer', data)
   },
+  [types.UPDATE_PAGE_TITLE] (state, data) {
+    state.title = data
+  },
   demo (state, name) {
     state.author = name
   }

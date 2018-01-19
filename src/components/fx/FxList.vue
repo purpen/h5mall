@@ -1,10 +1,11 @@
 <template>
   <ul class="fx-list">
     <li
-      v-for="(tab, index) in tabs"
-      @click="hook_click_tab(index)"
-      :class="{ active: is_actived(index) }"
-      class="item">
+      class="item"
+      v-for="(tab, idx) in tabs"
+      @click="hook_click_tab(idx)"
+      :class="{ active: is_actived(tab.id) }"
+      :key="tab.id">
       {{ tab.name }}
     </li>
   </ul>
@@ -12,26 +13,35 @@
 
 <script>
   export default {
-    name: 'fx-list',
+    name: 'FxList',
     props: {
       tabs: {
         type: Array,
         required: true
-      }
+      },
+      active_item: ''
     },
     data () {
       return {
-        index: 0
+        active_index: 0
       }
+    },
+    created () {
+      const vm = this;
+      console.log('active item: ' + this.active_item);
+      this.tabs.forEach((item, idx) => {
+        if (item.id === vm.active_item) {
+          vm.active_index = idx
+        }
+      })
     },
     methods: {
       hook_click_tab (index) {
-        this.index = index;
-        console.log('click tab: ' + this.index);
+        this.active_index = index;
         this.$emit('click', index)
       },
-      is_actived (index) {
-        return this.index === index
+      is_actived (id) {
+        return this.active_item === id
       }
     }
   }

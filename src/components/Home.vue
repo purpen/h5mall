@@ -103,13 +103,10 @@
     computed: {
       is_login () {
         return this.$store.state.token
-      },
-      title () {
-        return this.$router.history.current.meta.title
       }
     },
     created () {
-      this.get_slides()
+      this.get_slides();
       this.get_products()
     },
     methods: {

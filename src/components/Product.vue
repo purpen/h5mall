@@ -1,20 +1,16 @@
 <template>
   <div class="fx-container">
-
+    <fx-header :show_back="true"></fx-header>
     <div class="fx-container__menu">
-      <ul class="list">
-        <li
-          class="item"
-          v-for="category in categories"
-          :key="category.id"
-          @click="hook_sub_category(category.id)"
-          :class="{ active: is_active(category.id) }">
-            <span>{{ category.name }}</span>
-        </li>
-      </ul>
+      <fx-list
+        @click="hook_sub_category"
+        :tabs="categories"
+        :active_item="cid">
+      </fx-list>
     </div>
 
     <div class="fx-container__body">
+
       <div class="fx-products--category">
         <mx-product
           v-for="(product, index) in category_products"
@@ -30,6 +26,8 @@
 
 <script>
   import api from '@/constant/api'
+  import FxHeader from '@/components/block/FxHeader'
+  import FxList from '@/components/fx/FxList'
   import MxProduct from '@/components/block/MxProduct'
 
   export default {
@@ -60,7 +58,7 @@
         this.$axiosWrap.get(api.categories, { params: { pid: this.pid } }).then((result) => {
           vm.$Progress.finish();
           if (result.success) {
-            vm.categories = result.data.categories
+            vm.categories = result.data.categories;
           }
         }).catch((error) => {
           vm.$Progress.fail();
@@ -85,15 +83,17 @@
           vm.$message.error(error.message)
         })
       },
-      hook_sub_category (cid) {
-        this.cid = cid;
+      hook_sub_category (idx) {
+        const category = this.categories[idx];
+        console.log(category);
+        this.cid = category.id;
+
         this.get_products()
-      },
-      is_active (cid) {
-        return cid === this.cid
       }
     },
     components: {
+      FxList,
+      FxHeader,
       MxProduct
     }
   }

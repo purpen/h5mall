@@ -1,8 +1,17 @@
 <template>
   <div class="fx-container">
+    <fx-header :show_back="true">
+      <label class="actions text-primary" @click="hook_service_phone" slot="right-sider">
+        <i class="fx-icon-customer-service"></i> 在线客服
+      </label>
+    </fx-header>
 
     <div class="fx-container__menu">
-      <fx-list :tabs="tabs" v-on:click="hook_change_tab"></fx-list>
+      <fx-list
+        @click="hook_change_tab"
+        :tabs="tabs"
+        :active_item="current_status">
+      </fx-list>
     </div>
 
     <div class="fx-container__body is-orders">
@@ -18,30 +27,34 @@
 
 <script>
   import api from '@/constant/api'
+  import FxHeader from '@/components/block/FxHeader'
   import FxList from '@/components/fx/FxList'
   import FxOrderList from '@/components/fx/FxOrderList'
 
   export default {
     name: 'UserOrders',
-    data () {
-      return {
-        tabs: [
-          { name: '全部', status: 0 },
-          { name: '待付款', status: 1 },
-          { name: '待发货', status: 10 },
-          { name: '待收货', status: 20 }
-        ],
-        active_tab: 0,
-        orders: [],
-        status: 0
+    props: {
+      status: {
+        type: Number,
+        default () {
+          return 0
+        }
       }
     },
-    computed: {
-      title () {
-        return '我的订单'
+    data () {
+      return {
+        current_status: 0,
+        tabs: [
+          { name: '全部', id: 0 },
+          { name: '待付款', id: 1 },
+          { name: '待发货', id: 10 },
+          { name: '待收货', id: 20 }
+        ],
+        orders: []
       }
     },
     mounted () {
+      this.current_status = this.status;
       this.get_orders()
     },
     methods: {
@@ -49,7 +62,7 @@
       get_orders () {
         const vm = this;
         this.$axiosWrap.get(api.orders, {
-          params: { status: vm.status }
+          params: { status: vm.current_status }
         }).then((result) => {
           if (result.success) {
             this.orders = result.data.orders
@@ -59,18 +72,16 @@
         })
       },
       hook_change_tab (index) {
-        let counter = 0;
-        for (const tab of this.tabs) {
-          if (counter === index) {
-            this.status = tab.status
-          }
-          counter += 1
-        }
+        this.current_status = this.tabs[index].id;
         this.get_orders()
+      },
+      hook_service_phone () {
+        console.log('客服热线');
       }
     },
     components: {
       FxList,
+      FxHeader,
       FxOrderList
     }
   }
